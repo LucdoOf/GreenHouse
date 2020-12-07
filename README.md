@@ -14,6 +14,6 @@ composer install
 
 > Par exemple si mon installation apache pointe vers `/var/www` et que mon projet est le dossier `/var/www/Polytech/GreenHouse`, je renseigne **`/Polytech/GreenHouse/public`**
 
-3) Pour finir, si vous êtes sur un environnement ubuntu, il est **nécessaire** de donner les droits à votre utilisateur Apache (généralement www-data) sur le dossier `data`. 
+3) Pour finir, si vous êtes sur un environnement linux, il est **nécessaire** de donner les droits à votre utilisateur Apache (généralement www-data) sur le dossier `data`. 
 
 > Il est important de donner les droits **récursivement** sur le dossier data. Exemple: `sudo chown www-data:lucas data/ -R`
