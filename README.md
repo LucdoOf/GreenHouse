@@ -16,4 +16,4 @@ composer install
 
 3) Pour finir, si vous êtes sur un environnement linux, il est **nécessaire** de donner les droits à votre utilisateur Apache (généralement www-data) sur le dossier `data`. 
 
-> Il est important de donner les droits **récursivement** sur le dossier data. Exemple: `sudo chown www-data:lucas data/ -R`
+> Il est important de donner les droits **récursivement** sur le dossier data. Exemple: `sudo chown www-data:lucas data/ -R`. N.B.: Si après le premier affichage du site non fructueux, le fichier 'mois/jour.txt' n'est pas créé, exécuter à nouveau la commande.

@@ -1,10 +1,31 @@
 <?php
 
 /**
+ * Retourne le domaine de l'application
+ *
+ * @return string
+ */
+function public_url() {
+    return PUBLIC_DOMAIN . RELATIVE_DIR_PUBLIC;
+}
+
+/**
+ * Retourne l'url d'un fichier de ressource public
+ *
+ * @param $type
+ * @param $file
+ * @return string
+ */
+function resource($type, $file) {
+    return public_url() . "/assets/$type/$file";
+}
+
+/**
+ * Retourne une route formatée récupérée parmis l'index des routes
+ *
  * @param $route
  * @param string $var
  * @return string
- *
  **/
 function route($route, $var = null) {
     $routes = include('routes.php');

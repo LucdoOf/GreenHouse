@@ -33,7 +33,6 @@ class Router {
      */
     public function routeReq(){
         $routes = $this->getRoutes();
-        Dbg::logs($routes);
         $dispatcher = cachedDispatcher(function (RouteCollector $r) use ($routes) {
             $dir = ($this->relativeDir ? $this->relativeDir : '');
             foreach ($routes as $routeId => $rt) {

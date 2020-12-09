@@ -1,7 +1,7 @@
 <?php
 
-use GreenHouse\Controllers\HomeController;
+use GreenHouse\Controllers\LoginController;
 
 return [
-    '/'     => ["GET", "/", [HomeController::class, "home"]],
+    '/'     => ["GET", "/", [LoginController::class, "login"]],
 ];
