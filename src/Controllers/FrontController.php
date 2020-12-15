@@ -8,7 +8,6 @@ class FrontController extends Controller {
 
     protected $layout = 'master';
     protected $async = false;
-    protected $path = APPLICATION_PATH . "/views";
 
     /**
      * @param string $view Name of the view.
@@ -21,13 +20,13 @@ class FrontController extends Controller {
             exit();
         }
         extract($vars);
-        require($this->path . '/layouts/' . $this->layout . '.htm.php');
+        require(APPLICATION_PATH . '/views/layouts/' . $this->layout . '.htm.php');
     }
 
     protected function getContent($view, $vars = []) {
         ob_start();
         extract($vars);
-        include $this->path . '/' . str_replace('.', '/', $view) . '.htm.php';
+        include APPLICATION_PATH . '/views/' . str_replace('.', '/', $view) . '.htm.php';
         return ob_get_clean();
     }
 

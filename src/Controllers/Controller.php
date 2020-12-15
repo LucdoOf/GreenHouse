@@ -5,7 +5,7 @@ namespace GreenHouse\Controllers;
 class Controller {
 
     protected $user = null;
-    protected $requireAuth = false;
+    const REQUIRE_AUTH = false;
 
     public function __construct() {}
 
