@@ -103,7 +103,7 @@ passée en paramètre.
 Les variables passées en paramètres de `render` seront disponibles dans la vue correspondante. 
 Par exemple en appelant `render('example', ['var' => 2])`, la variable `$var` de valeur `2` sera disponible dans ma vue `example`.
 
-Les contrôleurs disposent des méthodes `error_40[1-5]` permettant de lever des erreurs
+> Les contrôleurs disposent des méthodes `error_40[1-5]` permettant de lever des erreurs
 
 #### Routeur
 
@@ -142,3 +142,8 @@ on peut retrouver l'URL de la route pour un paramètre donné en le précisant d
 > Le nom du paramètre dans une route n'est utile que pour l'identification des paramètres dans la méthode route, dans l'exemple
 > ci-dessus, pour récupérer l'URL /houses/4 (et en supposant que l'identifiant de la route est `house`), il faut appeler
 > `route('house', ['id' => 4])`
+
+Pour finir, `fast-route` permet d'utiliser des regex pour formuler des routes, la regex que nous utiliserons le plus
+sera `d+` qui signifie entier strictement positif, pour l'utiliser sur l'exemple de la route `house` cela donnerait 
+`/houses/{id:\d+}`, appeler `/houses/test` provoquera une 404, alors que `/houses/2` appellera correctement la méthode du 
+contrôleur.
