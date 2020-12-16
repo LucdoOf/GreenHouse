@@ -20,7 +20,7 @@ use GreenHouse\Core\Auth;
     <header>
         <nav>
             <div class="menu">
-                <a id="main-logo"><img src="<?= resource("images", "logo.png") ?>"></a>
+                <a id="main-logo" href="<?= route("test", [1, 4]) ?>"><img src="<?= resource("images", "logo.png") ?>"></a>
                 <a class="active"><i class="fas fa-house-user r"></i>Maisons</a>
                 <a><i class="fas fa-building r"></i>Appartements</a>
                 <a><i class="fas fa-cogs r"></i>Configuration</a>

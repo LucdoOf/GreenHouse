@@ -3,12 +3,12 @@
 namespace GreenHouse\Controllers;
 
 use GreenHouse\Utils\Dbg;
-use Exception;
-use function FastRoute\cachedDispatcher;
-use FastRoute\Dispatcher;
-use FastRoute\RouteCollector;
 
 class Router {
+
+    const ROUTE_NOT_FOUND = 0;
+    const ROUTE_METHOD_NOT_ALLOWED = 1;
+    const ROUTE_FOUND = 2;
 
     private $routes;
     private $relativeDir;
@@ -33,56 +33,69 @@ class Router {
      */
     public function routeReq(){
         $routes = $this->getRoutes();
-        $dispatcher = cachedDispatcher(function (RouteCollector $r) use ($routes) {
-            $dir = ($this->relativeDir ? $this->relativeDir : '');
-            foreach ($routes as $routeId => $rt) {
-                $r->addRoute($rt[0], $dir . $rt[1], [$rt[2], $routeId]);
-            }
-        }, [
-            'cacheFile'     => APPLICATION_PATH . '/data/cache/routes_public.cache',
-            'cacheDisabled' => IS_DEV,
-        ]);
 
-        // Fetch method and URI from somewhere
-        $httpMethod = $_SERVER['REQUEST_METHOD'];
-        $uri = $_SERVER['REQUEST_URI'];
+        $routeInfo = [
+            "status"    => self::ROUTE_NOT_FOUND,
+            "vars"      => [],
+            "handler"   => [
+                "controller" => null,
+                "method" => null
+            ],
+        ];
 
-        // Strip query string (?foo=bar) and decode URI
+        $uri = substr($_SERVER['REQUEST_URI'], strlen(RELATIVE_DIR_PUBLIC));
+        // On enlève les paramètres et on enlève tout ce qu'il y a avant RELATIVE_DIR_PUBLIC
         if (false !== $pos = strpos($uri, '?')) {
             $uri = substr($uri, 0, $pos);
         }
-
         $uri = rawurldecode($uri);
+        if($uri[strlen($uri)-1] == '/') $uri = substr($uri, 0, strlen($uri)-1);
 
-        $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-        switch ($routeInfo[0]) {
-            case Dispatcher::NOT_FOUND:
+        // On cherche la route depuis l'URL
+        foreach ($routes as $routeId => $routeData) {
+            $routeMethod = $routeData[0];
+            // On construit la regex
+            $routeRegex = "/^" . str_replace("/", "\/", $routeData[1]) . "$/";
+            $routeHandler = $routeData[2];
+            if ($_SERVER["REQUEST_METHOD"] == $routeMethod) {
+                $matches = [];
+                if (preg_match($routeRegex, $uri, $matches)) {
+                    $routeInfo["status"] = self::ROUTE_FOUND;
+                    $routeInfo["handler"]["controller"] = $routeHandler[0];
+                    $routeInfo["handler"]["method"] = $routeHandler[1];
+                    unset($matches[0]); // Le premier élément de matches correspond à l'URL entière
+                    $routeInfo["vars"] = $matches;
+                    break;
+                } else {
+                }
+            } else {
+                $routeInfo["status"] = self::ROUTE_METHOD_NOT_ALLOWED;
+            }
+        }
+
+        switch ($routeInfo["status"]) {
+            case self::ROUTE_NOT_FOUND:
                 if (IS_DEV) {
-                    Dbg::error('Route not found ' . $uri);
+                    Dbg::error('Route not found ' . get_called_url());
                 }
                 (new $this->controllerClass())->error_404();
                 break;
-            case Dispatcher::METHOD_NOT_ALLOWED:
+            case self::ROUTE_METHOD_NOT_ALLOWED:
                 Dbg::error('Method not allowed');
                 (new $this->controllerClass())->error_405();
                 break;
-            case Dispatcher::FOUND:
-                $handler = $routeInfo[1];
-                $vars = $routeInfo[2];
+            case self::ROUTE_FOUND:
+                $handler = $routeInfo["handler"];
+                $vars = $routeInfo["vars"];
+                $controller = $handler["controller"];
+                $method = $handler["method"];
 
-                list($controller, $method) = $handler[0];
-                $routeId = $handler[1];
-
-                //La clé API a été renseignée
                 if (method_exists($controller, $method)) {
                     call_user_func_array([new $controller, $method], $vars);
                 } else {
                     Dbg::error("Method $method not found");
                     (new Controller())->error_404();
                 }
-                break;
-            default:
-                (new $this->controllerClass())->error_404();
                 break;
         }
     }

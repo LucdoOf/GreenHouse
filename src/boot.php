@@ -3,7 +3,7 @@
 use GreenHouse\Utils\Dbg;
 
 define('APPLICATION_PATH', realpath(dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR));
-require_once(APPLICATION_PATH . "/vendor/autoload.php");
+require_once(APPLICATION_PATH . "/src/autoload.php");
 
 ini_set('log_errors', 1);
 ini_set('error_log', Dbg::getFileName());
