@@ -49,20 +49,15 @@ function route($route, $var = null) {
 
 
     if (is_array($var)) {
-        $kfound = 0;
         foreach ($var as $k => $v) {
-            $prevKFound = $kfound;
+            $count = 0;
             // On remplace les paramètres de la route par $var
-            $uri = preg_replace('/\{' . $k . ':?(.*)?\}/', $v, $uri, -1, $kfound);
-            if ($kfound > $prevKFound) {
-                unset($var[$k]);
-            }
+            $uri = preg_replace('/\((?:[^)(]+|(?R))*+\)/', $v, $uri, 1, $count);
+            if($count > 0) unset($var[$k]);
         }
         if (!empty($var)) {
             $params = http_build_query($var);
         }
-    } elseif (intval($var) > 0) {
-        $uri = preg_replace('/\{id:(.*)\}/', $var, $uri);
     } else {
         $params = $var;
     }

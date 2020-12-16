@@ -4,10 +4,8 @@ GreenHouse est un projet encadré de Polytech Tours permettant la gestion de mai
 
 ## Installation du projet
 
-1) Le projet utilise des dépendances gérées avec composer, pour installer les dépendances lancer:
-```
-composer install
-```
+1) À la demande du corps enseignant, **le projet n'utilise aucune librairie**. Nous avons recréé entièrement certaines 
+librairies afin de nous prêter à l'exercice. Ainsi, nous n'utiliserons pas composer.
 
 2) Afin de garantir une phase de développement simple et un déploiement propre,
 nous utilisons des fichiers de configurations, pour créer le vôtre, copier le fichier d'exemple `conf.inc.example.php` 
@@ -110,7 +108,7 @@ Par exemple en appelant `render('example', ['var' => 2])`, la variable `$var` de
 Le routeur est la clé de voute d'un projet **MVCR** moderne. Il permet d'appeler les différentes fonctions des contrôleurs en 
 fonction de l'appel HTTP courant. 
 
-Nous utilisons `fast-route` (https://github.com/nikic/FastRoute) pour faciliter l'implémentation d'un routeur propre.
+Nous avons implanté un système de routes basées sur des `regex`.
 
 Les routes sont définies dans le fichier 'src/routes.php' sous forme d'un tableau associatif. Voici un exemple d'un fichier
 de route correct:
@@ -128,22 +126,21 @@ return [
 ```
 
 Ici on a deux routes d'identifiants internes `/` et `houses` (cet identifiant n'est utilisé qu'en interne pour obtenir 
-l'URL de ces routes, voir note plus bas). Ces deux routes sont définies comme accessibles avec la méthode HTTP `GET` (
-on peut préciser plusieurs méthodes HTTP autorisées à l'aide d'un tableau, par exemple `["GET", "POST"]`). 
+l'URL de ces routes, voir note plus bas). Ces deux routes sont définies comme accessibles avec la méthode HTTP `GET`. 
 L'élément du tableau suivant défini l'URL via laquelle cette route est accessible et enfin le dernier élément défini le
 contrôleur et la méthode à appeler. 
 
 > Les URL des routes sont récupérables via la fonction route($routeId, $vars = [])
 
-L'utilité principale de `fast-route` est la possibilité de passer des paramètres aux routes, par exemple la route définie par
-l'URL `/houses/{id}` passera `id` en paramètre de la méthode du contrôleur appelé. Lorsqu'une route prend un paramètre
-on peut retrouver l'URL de la route pour un paramètre donné en le précisant dans le paramètre `$vars` de la méthode `route`.
+L'utilité principale de notre implémentation basée sur les `regex` est la possibilité de passer des paramètres aux routes,
+par exemple la route définie par l'URL `/houses/(.+)` passera le contenu des parenthèses en paramètre de la méthode du
+contrôleur appelé. Lorsqu'une route prend un paramètre on peut retrouver l'URL de la route pour un paramètre donné en le précisant dans le paramètre `$vars` de la méthode `route`.
 
-> Le nom du paramètre dans une route n'est utile que pour l'identification des paramètres dans la méthode route, dans l'exemple
-> ci-dessus, pour récupérer l'URL /houses/4 (et en supposant que l'identifiant de la route est `house`), il faut appeler
-> `route('house', ['id' => 4])`
+> Dans l'exemple ci-dessus, pour récupérer l'URL /houses/4 (et en supposant que l'identifiant de la route est `house`), il faut appeler
+> `route('house', [4])`, s’il y avait eu plusieurs paramètres il suffit de remplir le tableau passé en deuxième paramètre de la fonction
+> `route` en fonction.
 
-Pour finir, `fast-route` permet d'utiliser des regex pour formuler des routes, la regex que nous utiliserons le plus
-sera `d+` qui signifie entier strictement positif, pour l'utiliser sur l'exemple de la route `house` cela donnerait 
-`/houses/{id:\d+}`, appeler `/houses/test` provoquera une 404, alors que `/houses/2` appellera correctement la méthode du 
+Pour finir, notre implémentation de routes avec un système de `regex` permet de paramétrer strictement des routes.
+Par exemple, si on souhaite avoir uniquement un nombre dans l'URL ci-dessus, il faudrait renseigner dans le fichier routes: 
+`/houses/([0-9]+)`, appeler `/houses/test` provoquera une 404, alors que `/houses/2` appellera correctement la méthode du 
 contrôleur.
