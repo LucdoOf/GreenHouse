@@ -4,10 +4,22 @@
 namespace GreenHouse\Controllers;
 
 
+use GreenHouse\Core\Auth;
+
 class FrontController extends Controller {
 
     protected $layout = 'master';
     protected $async = false;
+    const REQUIRE_AUTH = false;
+
+    public function __construct() {
+        parent::__construct();
+        if (self::REQUIRE_AUTH === true) {
+            if (!$this->async) {
+                if(!Auth::getInstance()->isAuth()) $this->redirect(route("login"), ["redirect" => $_SERVER["REQUEST_URI"]]);
+            } else $this->error_401();
+        }
+    }
 
     /**
      * @param string $view Name of the view.
