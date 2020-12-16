@@ -72,7 +72,7 @@ class Auth {
      * @return bool True si la connection a réussie, false sinon
      */
     public function login($mail, $password) {
-        $user = User::select(["mail" => $mail]);
+        $user = User::select(["email" => $mail]);
         if($user && $user->exist() && $user->active == 1) {
             if(User::checkPassword($password, $user->password)) {
                 $this->auth($user);
