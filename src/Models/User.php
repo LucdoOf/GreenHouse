@@ -4,7 +4,7 @@ namespace GreenHouse\Models;
 
 class User extends Model {
 
-    const STORAGE = "user";
+    const STORAGE = "users";
     const COLUMNS = [
       "id" => true,
       "name" => true,

@@ -29,6 +29,7 @@ class Auth {
 
     public function __construct() {
         $this->loginFromCookie();
+        Dbg::logs($this->user);
     }
 
     public static function getInstance() {
@@ -37,6 +38,7 @@ class Auth {
     }
 
     public function isAuth() {
+        Dbg::logs($this->user);
         return !is_null($this->user);
     }
 
@@ -49,11 +51,15 @@ class Auth {
     }
 
     public function login($mail, $password) {
-        $user = User::select(["mail" => $mail]);
+        $user = User::select(["email" => $mail]);
         if($user && $user->exist() && $user->active == 1) {
             if(User::checkPassword($password, $user->password)) {
                 $this->auth($user);
+            } else {
+                Dbg::logs("Invalid password");
             }
+        } else {
+            Dbg::logs("Invalid mail");
         }
     }
 
@@ -72,9 +78,10 @@ class Auth {
         if (!is_null($email) && !is_null($password)) {
             Dbg::logs("Login from cookie");
             $this->login($email, $password);
+        } else {
+            $this->logout();
+            return false;
         }
-        $this->logout();
-        return false;
     }
 
 }
