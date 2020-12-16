@@ -28,6 +28,7 @@ use GreenHouse\Core\Auth;
             <div class="menu">
                 <?php if(Auth::getInstance()->isAuth()): ?>
                     <a class="link" href="#"><i class="fas fa-user r"></i><?= Auth::getInstance()->user->getFullName() ?></a>
+                    <a class="button" type="button" href="<?= route("logout")?>">Log out</a>
                 <?php else: ?>
                     <a class="link" href="<?= route('login', ["redirect" => get_called_url()]) ?>"><i class="fas fa-user r"></i>Se connecter</a>
                 <?php endif; ?>

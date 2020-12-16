@@ -7,5 +7,6 @@ return [
     'login'     => ["GET", "/login", [LoginController::class, "login"]],
     'houses'    => ["GET", "/houses", [HousesController::class, "listHouses"]],
     'auth'      => ["POST", "/auth", [LoginController::class, "auth"]],
-    'test'      => ["GET", "/test/(.+)/test/(.+)", [LoginController::class, "test"]]
+    'test'      => ["GET", "/test/(.+)/test/(.+)", [LoginController::class, "test"]],
+    'logout'    => ["GET", "/logout", [LoginController::class, "logout"]]
 ];

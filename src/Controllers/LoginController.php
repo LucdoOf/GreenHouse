@@ -44,4 +44,9 @@ class LoginController extends FrontController {
         $this->redirect(route("login", $redirectArray));
     }
 
+    public function logout() {
+        Auth::getInstance()->logout();
+        $this->redirect(route("login"));
+    }
+
 }

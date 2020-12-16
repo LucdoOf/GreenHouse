@@ -38,6 +38,10 @@ div {
     padding-bottom: 15px;
     display: flex;
     flex-direction: column;
+    a {
+      font-size: 25px;
+      color: red;
+    }
     form {
       display: flex;
       flex-direction: column;

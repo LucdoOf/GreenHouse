@@ -57,19 +57,20 @@ class Router {
             // On construit la regex
             $routeRegex = "/^" . str_replace("/", "\/", $routeData[1]) . "$/";
             $routeHandler = $routeData[2];
-            if ($_SERVER["REQUEST_METHOD"] == $routeMethod) {
-                $matches = [];
-                if (preg_match($routeRegex, $uri, $matches)) {
+            $matches = [];
+            if (preg_match($routeRegex, $uri, $matches)) {
+                if ($_SERVER["REQUEST_METHOD"] == $routeMethod) {
+                    Dbg::error($routeRegex . " " . $uri);
                     $routeInfo["status"] = self::ROUTE_FOUND;
                     $routeInfo["handler"]["controller"] = $routeHandler[0];
                     $routeInfo["handler"]["method"] = $routeHandler[1];
                     unset($matches[0]); // Le premier élément de matches correspond à l'URL entière
                     $routeInfo["vars"] = $matches;
-                    break;
                 } else {
+                    Dbg::error($_SERVER["REQUEST_METHOD"]." ".$routeMethod." ".$routeId);
+                    $routeInfo["status"] = self::ROUTE_METHOD_NOT_ALLOWED;
                 }
-            } else {
-                $routeInfo["status"] = self::ROUTE_METHOD_NOT_ALLOWED;
+                break;
             }
         }
 
