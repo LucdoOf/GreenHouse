@@ -1,6 +1,15 @@
 <?php
 
 /**
+ * Retourne true si l'environnement est en mode développement
+ *
+ * @return bool
+ */
+function is_dev() {
+    return IS_DEV;
+}
+
+/**
  * Retourne le domaine de l'application
  *
  * @return string
