@@ -5,5 +5,6 @@ use GreenHouse\Controllers\LoginController;
 
 return [
     '/'         => ["GET", "/", [LoginController::class, "login"]],
-    'houses'    => ["GET", "/houses", [HousesController::class, "listHouses"]]
+    'houses'    => ["GET", "/houses", [HousesController::class, "listHouses"]],
+    'auth'      => ["POST", "/auth", [LoginController::class, "auth"]]
 ];

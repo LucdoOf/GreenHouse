@@ -62,5 +62,5 @@ function route($route, $var = null) {
         $params = "?" . $params;
     }
 
-    return public_url() . $uri . $params;
+    return public_url() . '/'.$uri . $params;
 }
