@@ -5,3 +5,48 @@
   background-repeat: no-repeat;
   background-size: 110%;
 }
+#title {
+  padding-top: 10%;
+  text-align: center;
+  font-size: 50px;
+  font-family: KacstPoster;
+}
+div {
+  #login {
+    @extend .col-3;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 40px;
+    top: 15%;
+    border: 1px solid $gray;
+    background-color: $boxGray;
+    @extend .shadow;
+    transition: 1s box-shadow cubic-bezier(.22,.68,0,1.71);
+    &:hover {
+      box-shadow: 0px 0px 1px 0px #ffffff;
+    }
+    #signin {
+      color : $lightBlack;
+      padding-left: 40px;
+      margin-bottom: 7px;
+    }
+  }
+  #content {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    form {
+      display: flex;
+      flex-direction: column;
+      input {
+        margin-top: 8px;
+      }
+      #submit {
+        margin-top: 15px;
+      }
+    }
+  }
+}

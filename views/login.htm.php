@@ -2,10 +2,10 @@
 /** @var $loginError */
 /** @var $redirect */
 ?>
+<h1 id="title">Green House</h1>
 <div id="login">
     <div id="head">
-        <h1>Green House</h1>
-        <h2>Sign up</h2>
+        <h2 id="signin">Sign up</h2>
     </div>
     <div id="content">
         <?php if($loginError):?>
@@ -14,7 +14,7 @@
         <form method="post" action="<?= route("auth", ["redirect" => $redirect]) ?>">
             <input type="email" name="mail" placeholder="this@that.net" />
             <input type="password" name="password" placeholder="letmein" />
-            <input type="submit" value="Confirm" />
+            <input class="button cta" type="submit" id="submit" value="Confirm" />
         </form>
     </div>
 </div>
