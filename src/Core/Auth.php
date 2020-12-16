@@ -18,6 +18,8 @@ class Auth {
         self::ROLE_USER,
     ];
 
+    static $instance;
+
     /**
      * Utilisateur connecté, ou null si déconnecté
      *
@@ -27,6 +29,11 @@ class Auth {
 
     public function __construct() {
         $this->loginFromCookie();
+    }
+
+    public static function getInstance() {
+        if(is_null(static::$instance)) static::$instance = new Auth();
+        return static::$instance;
     }
 
     public function isAuth() {
