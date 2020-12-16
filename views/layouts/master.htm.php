@@ -1,5 +1,8 @@
 <?php
 /** @var $content */
+
+use GreenHouse\Core\Auth;
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +26,11 @@
                 <a><i class="fas fa-cogs r"></i>Configuration</a>
             </div>
             <div class="menu">
-                <a class="link"><i class="fas fa-user r"></i>Mon compte</a>
+                <?php if(Auth::getInstance()->isAuth()): ?>
+                    <a class="link" href="#"><i class="fas fa-user r"></i><?= Auth::getInstance()->user->getFullName() ?></a>
+                <?php else: ?>
+                    <a class="link" href="<?= route('login', ["redirect" => get_called_url()]) ?>"><i class="fas fa-user r"></i>Se connecter</a>
+                <?php endif; ?>
             </div>
         </nav>
     </header>
