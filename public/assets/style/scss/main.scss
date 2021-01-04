@@ -4,6 +4,7 @@
 // Abstracts (variables, typo, animations, mixins, tout ce qui ne sert pas directement à rendre)
 @import "abstracts/variables";
 @import "abstracts/typography";
+@import "abstracts/animations";
 
 // Base (reset et styles racines)
 @import "base/reset";
@@ -17,6 +18,8 @@
 @import "components/fields";
 @import "components/tables";
 @import "components/buttons";
+@import "components/menus";
+@import "components/inputs";
 
 // Layouts (layouts + gestion de l'application)
 @import "layouts/master";

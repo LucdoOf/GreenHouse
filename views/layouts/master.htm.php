@@ -19,16 +19,16 @@ use GreenHouse\Core\Auth;
 <body id="master">
     <header>
         <nav>
-            <div class="menu">
+            <div class="header-menu">
                 <a id="main-logo" href="<?= route("test", [1, 4]) ?>"><img src="<?= resource("images", "logo.png") ?>"></a>
                 <a class="active"><i class="fas fa-house-user r"></i>Maisons</a>
                 <a><i class="fas fa-building r"></i>Appartements</a>
-                <a><i class="fas fa-cogs r"></i>Configuration</a>
+                <a href="<?= route("configuration.zones") ?>"><i class="fas fa-cogs r"></i>Configuration</a>
             </div>
-            <div class="menu">
+            <div class="header-menu">
                 <?php if(Auth::getInstance()->isAuth()): ?>
                     <a class="link" href="#"><i class="fas fa-user r"></i><?= Auth::getInstance()->user->getFullName() ?></a>
-                    <a class="button" type="button" href="<?= route("logout")?>">Log out</a>
+                    <a class="link" type="button" href="<?= route("logout")?>">Log out</a>
                 <?php else: ?>
                     <a class="link" href="<?= route('login', ["redirect" => get_called_url()]) ?>"><i class="fas fa-user r"></i>Se connecter</a>
                 <?php endif; ?>
@@ -38,5 +38,6 @@ use GreenHouse\Core\Auth;
     <div id="app">
         <?= $content; ?>
     </div>
+    <script src="<?= resource("scripts", "common.js") ?>"></script>
 </body>
 </html>

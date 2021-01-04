@@ -71,3 +71,22 @@
     margin: 0 10px;
   }
 }
+
+.button-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+    height: 41px;
+  }
+
+  .input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

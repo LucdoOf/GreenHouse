@@ -7,7 +7,7 @@ class User extends Model {
     const STORAGE = "users";
     const COLUMNS = [
       "id" => true,
-      "name" => true,
+      "name" => false,
       "password" => true,
       "email" => false,
       "active" => true,
