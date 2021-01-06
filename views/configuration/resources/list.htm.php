@@ -8,12 +8,7 @@ use GreenHouse\Models\Resource;
     <div class="box-header">
         <div class="box-title">Resources</div>
         <div class="box-actions">
-            <div class="button-input">
-                <form method="POST" action="<?= route("configuration.resources.create") ?>">
-                    <input class="input" name="name" type="text" placeholder="Eau"/>
-                    <input class="button" type="submit" value="+"/>
-                </form>
-            </div>
+            <a class="button" onclick="resourcesModal.show()">Ajouter</a>
         </div>
     </div>
     <div class="box-content">
@@ -35,3 +30,11 @@ use GreenHouse\Models\Resource;
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    let resourcesModal;
+    window.addEventListener("load", () => {
+        resourcesModal = new Modal({view_url: '<?= route("configuration.resources.create") ?>', title: 'Ajouter une resource'});
+        resourcesModal.build();
+    });
+</script>
