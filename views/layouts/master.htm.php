@@ -21,7 +21,7 @@ use GreenHouse\Core\Auth;
         <nav>
             <div class="header-menu">
                 <a id="main-logo" href="<?= route("test", [1, 4]) ?>"><img src="<?= resource("images", "logo.png") ?>"></a>
-                <a <?= strpos($_SERVER["REQUEST_URI"], "houses") ? "class='active'" : "" ?>><i class="fas fa-house-user r"></i>Maisons</a>
+                <a <?= strpos($_SERVER["REQUEST_URI"], "houses") ? "class='active'" : "" ?> href="<?= route("houses") ?>"><i class="fas fa-house-user r"></i>Maisons</a>
                 <a <?= strpos($_SERVER["REQUEST_URI"], "flats") ? "class='active'" : "" ?>><i class="fas fa-building r"></i>Appartements</a>
                 <a <?= strpos($_SERVER["REQUEST_URI"], "devices") ? "class='active'" : "" ?> href="<?= route("devices") ?>"><i class="fas fa-laptop-house r"></i>Appareils</a>
                 <a <?= strpos($_SERVER["REQUEST_URI"], "configuration") ? "class='active'" : "" ?> href="<?= route("configuration.zones") ?>"><i class="fas fa-cogs r"></i>Configuration</a>
