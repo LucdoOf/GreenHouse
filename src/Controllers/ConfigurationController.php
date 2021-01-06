@@ -9,8 +9,8 @@ use GreenHouse\Models\Region;
 
 class ConfigurationController extends FrontController {
 
-    public function listZones() {
-        $this->render("configuration.zones.list", ["regions" => Region::getAll()]);
+    public function configuration() {
+        $this->render("configuration.container", ["regions" => Region::getAll()]);
     }
 
     public function createRegion() {
