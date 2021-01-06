@@ -2,8 +2,7 @@
 
 namespace GreenHouse\Models;
 
-class Device extends Model
-{
+class Device extends Model {
 
     const STORAGE = "devices";
     const COLUMNS = [
@@ -22,4 +21,5 @@ class Device extends Model
     public $description;
     public $device_type_id;
     public $flat_id;
+
 }

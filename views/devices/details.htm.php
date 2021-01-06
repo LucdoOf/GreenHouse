@@ -10,7 +10,7 @@
             <div class="box-content">
                 <div class="field">
                     <div class="label">Identifiant</div>
-                    <input name="id" class="value" type="text" value="<?= $device->id; ?>"/>
+                    <div name="id" class="value" ><?= $device->id; ?></div>
                 </div>
                 <div class="field">
                     <div class="label">Nom</div>
