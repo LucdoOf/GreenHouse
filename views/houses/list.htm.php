@@ -1,6 +1,9 @@
 <?php
 /** @var House[] $houses */
+
+use GreenHouse\Models\House;
 ?>
+
 <div class="row">
     <div class="box no-padding col-12">
         <div class="box-content">

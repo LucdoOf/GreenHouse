@@ -5,7 +5,7 @@ namespace GreenHouse\Controllers;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\Device;
 
-class DevicesController extends FrontController{
+class DevicesController extends FrontController {
 
     public function listDevices() {
         $this->render("devices/list", ["devices" => Device::getAll()]);

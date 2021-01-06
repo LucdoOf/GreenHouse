@@ -1,6 +1,7 @@
 <?php
-    /** @var Device[] $devices */
+/** @var Device[] $devices */
 ?>
+
 <div class="row">
     <div class="box no-padding col-12">
         <div class="box-content">
