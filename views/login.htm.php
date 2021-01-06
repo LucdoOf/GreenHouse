@@ -5,7 +5,7 @@
 <h1 id="title">Green House</h1>
 <div id="login">
     <div id="head">
-        <h2 id="signin">Sign up</h2>
+        <h2 id="signin">Connexion</h2>
     </div>
     <div id="content">
         <?php if($loginError):?>
@@ -14,7 +14,8 @@
         <form method="post" action="<?= route("auth", ["redirect" => $redirect]) ?>">
             <input type="email" name="mail" placeholder="this@that.net" />
             <input type="password" name="password" placeholder="letmein" />
-            <input class="button cta" type="submit" id="submit" value="Confirm" />
+            <a href="<?= route('signuppage')?>">Inscription</a>
+            <input class="button cta" type="submit" id="submit" value="Confirmer" />
         </form>
     </div>
 </div>

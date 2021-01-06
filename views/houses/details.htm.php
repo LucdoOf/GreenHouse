@@ -49,7 +49,7 @@
             </div>
             <div class="box-footer">
                 <div class="button-group">
-                    <a href="<?= route('house', [$house->id]) ?>" class="button">Annuler</a>
+                    <a href="<?= route('houses') ?>" class="button">Annuler</a>
                     <button type="submit" class="button cta">Enregistrer</button>
                 </div>
             </div>

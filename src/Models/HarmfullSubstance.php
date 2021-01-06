@@ -8,7 +8,7 @@ class HarmfullSubstance extends Model {
     const COLUMNS = [
         "id" => true,
         "name" => false,
-        "description" => true,
+        "description" => false,
         "min_value" => false,
         "max_value" => false,
         "critical_value" => false,

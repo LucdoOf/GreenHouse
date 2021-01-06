@@ -22,7 +22,7 @@ class FlatsController extends FrontController{
         $flat->flat_type_id = Request::valueRequest("type_id");
         $flat->security_level = Request::valueRequest("security");
         $flat->save();
-        $this->redirect(route('flat', [$flat->id]));
+        $this->redirect(route('flats'));
     }
 
 }

@@ -9,27 +9,23 @@
         <div class="box-header">
             <span class="box-title"><?= $device->name; ?></span>
         </div>
-        <form method="POST" action="<?= route('device.edit', [$device->id]) ?>">
+        <form method="POST" action="<?= route('device.create') ?>">
             <div class="box-content">
                 <div class="field">
-                    <div class="label">Identifiant</div>
-                    <div name="id" class="value" ><?= $device->id; ?></div>
-                </div>
-                <div class="field">
                     <div class="label">Nom</div>
-                    <input name="name" class="value" type="text" value="<?= $device->name; ?>"/>
+                    <input name="name" class="value" type="text" value="Un téléviseur"/>
                 </div>
                 <div class="field">
                     <div class="label">Lien de la vidéo de démonstration</div>
-                    <input name="video" class="value" type="text" value="<?= $device->demonstration_video; ?>"/>
+                    <input name="video" class="value" type="text" value="Youtube.fr/..."/>
                 </div>
                 <div class="field">
                     <div class="label">Position</div>
-                    <input name="location" class="value" type="text" value="<?= $device->location; ?>"/>
+                    <input name="location" class="value" type="text" value="Dans la cuisine, chambre..."/>
                 </div>
                 <div class="field">
                     <div class="label">Description</div>
-                    <input name="description" class="value" type="text" value="<?= $device->description; ?>"/>
+                    <input name="description" class="value" type="text" value="Mon téléviseur portable..."/>
                 </div>
                 <div class="field">
                     <div class="label">Type d'appareil</div>
@@ -53,7 +49,6 @@
             <div class="box-footer">
                 <div class="button-group">
                     <a href="<?= route('devices') ?>" class="button">Annuler</a>
-                    <a onclick="confirm('Confirmer la suppression de l\'appareil ?') ? window.location = '<?= route('device.delete', [$device->id]) ?>' : void(0)" class="button red">Supprimer</a>
                     <button type="submit" class="button cta">Enregistrer</button>
                 </div>
             </div>

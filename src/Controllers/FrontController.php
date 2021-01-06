@@ -5,6 +5,7 @@ namespace GreenHouse\Controllers;
 
 
 use GreenHouse\Core\Auth;
+use GreenHouse\Core\Request;
 
 class FrontController extends Controller {
 
@@ -14,10 +15,13 @@ class FrontController extends Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->async = Request::valueRequest("source") == "ajax";
         if (static::REQUIRE_AUTH === true) {
-            if (!$this->async) {
-                if(!Auth::getInstance()->isAuth()) $this->redirect(route("login", ["redirect" => get_called_url()]));
-            } else $this->error_401();
+            if (!Auth::getInstance()->isAuth()) {
+                if (!$this->async) {
+                    $this->redirect(route("login", ["redirect" => get_called_url()]));
+                } else $this->error_401();
+            }
         }
     }
 
