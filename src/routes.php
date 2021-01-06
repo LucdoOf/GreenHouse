@@ -29,5 +29,9 @@ return [
     'device.create.page' => ["GET", "/device/create", [DevicesController::class, "createPage"]],
     'device.delete' => ["GET", "/devices/delete/(.+)", [DevicesController::class, "deleteDevice"]],
     'device.edit'   => ["POST", "/devices/edit/(.+)", [DevicesController::class, "editDevice"]],
-    'device'        => ["GET", "/devices/(.+)", [DevicesController::class, "deviceDetails"]]
+    'device'        => ["GET", "/devices/(.+)", [DevicesController::class, "deviceDetails"]],
+    'configuration.substances.create'   => ["GET", "/configuration/substances/create", [ConfigurationController::class, "createSubstance"]],
+    'configuration.resources.create'    => ["GET", "/configuration/resources/create", [ConfigurationController::class, "createResource"]],
+    'configuration.substances.create.post' => ["POST", "/configuration/substances/create/post", [ConfigurationController::class, "createSubstancePost"]],
+    'configuration.resources.create.post'  => ["POST", "/configuration/resources/create/post", [ConfigurationController::class, "createResourcePost"]]
 ];

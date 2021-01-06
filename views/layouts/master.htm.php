@@ -40,5 +40,6 @@ use GreenHouse\Core\Auth;
         <?= $content; ?>
     </div>
     <script src="<?= resource("scripts", "common.js") ?>"></script>
+    <script src="<?= resource("scripts/classes", "Modal.js") ?>"></script>
 </body>
 </html>

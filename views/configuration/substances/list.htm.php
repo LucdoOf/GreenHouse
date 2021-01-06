@@ -8,12 +8,7 @@ use GreenHouse\Models\HarmfullSubstance;
     <div class="box-header">
         <div class="box-title">Substances</div>
         <div class="box-actions">
-            <div class="button-input">
-                <form method="POST" action="<?= route("configuration.substances.create") ?>">
-                    <input class="input" name="name" type="text" placeholder="Plutonium"/>
-                    <input class="button" type="submit" value="+"/>
-                </form>
-            </div>
+            <a class="button" onclick="substancesModal.show()">Ajouter</a>
         </div>
     </div>
     <div class="box-content">
@@ -35,3 +30,11 @@ use GreenHouse\Models\HarmfullSubstance;
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    let substancesModal;
+    window.addEventListener("load", () => {
+        substancesModal = new Modal({view_url: '<?= route("configuration.substances.create") ?>', title: 'Ajouter une substance'});
+        substancesModal.build();
+    });
+</script>
