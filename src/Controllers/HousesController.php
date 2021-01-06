@@ -5,6 +5,7 @@ namespace GreenHouse\Controllers;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\City;
 use GreenHouse\Models\House;
+use GreenHouse\Models\Flat;
 
 class HousesController extends FrontController {
 
