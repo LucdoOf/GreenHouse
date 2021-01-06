@@ -3,6 +3,7 @@
 use GreenHouse\Controllers\ConfigurationController;
 use GreenHouse\Controllers\DevicesController;
 use GreenHouse\Controllers\HousesController;
+use GreenHouse\Controllers\FlatsController;
 use GreenHouse\Controllers\LoginController;
 
 return [
@@ -10,6 +11,9 @@ return [
     'houses'    => ["GET", "/houses", [HousesController::class, "listHouses"]],
     'house.edit'=> ["POST", "/houses/edit/(.+)", [HousesController::class, "editHouse"]],
     'house'     => ["GET", "/houses/(.+)", [HousesController::class, "houseDetails"]],
+    'flats'    => ["GET", "/flats", [FlatsController::class, "listFlats"]],
+    'flat.edit'=> ["POST", "/flat/edit/(.+)", [FlatsController::class, "editFlat"]],
+    'flat'     => ["GET", "/flat/(.+)", [FlatsController::class, "flatDetails"]],
     'auth'      => ["POST", "/auth", [LoginController::class, "auth"]],
     'test'      => ["GET", "/test/(.+)/test/(.+)", [LoginController::class, "test"]],
     'logout'    => ["GET", "/logout", [LoginController::class, "logout"]],

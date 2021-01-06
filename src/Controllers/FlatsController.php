@@ -3,7 +3,7 @@
 namespace GreenHouse\Controllers;
 
 use GreenHouse\Core\Request;
-use GreenHouse\Models\Device;
+use GreenHouse\Models\Flat;
 
 class FlatsController extends FrontController{
 
