@@ -4,6 +4,7 @@ namespace GreenHouse\Controllers;
 
 use GreenHouse\Core\Auth;
 use GreenHouse\Core\Request;
+use GreenHouse\Models\User;
 use GreenHouse\Utils\Dbg;
 
 class LoginController extends FrontController {
@@ -47,6 +48,38 @@ class LoginController extends FrontController {
     public function logout() {
         Auth::getInstance()->logout();
         $this->redirect(route("login"));
+    }
+
+    public function signuppage(){
+        $this->render("signup");
+    }
+
+    public function signup() {
+        if(Request::valueRequest("password") == Request::valueRequest("password2")) {
+            $user = new User();
+            if(Request::valueRequest("password") != "" /* Et pas ds Bd...*/) {
+                $user->password = Request::valueRequest("password");
+                if(Request::valueRequest("email") != "") {
+                    $user->email = Request::valueRequest("email");
+                    $user->active = 1;
+                    $user->role = "user";
+                    $user->firstname = Request::valueRequest("firstname");
+                    $user->lastname = Request::valueRequest("lastname");
+                    $user->gender = Request::valueRequest("gender");
+                    $user->save();
+                    $this->redirect(route('login'));
+                } else {
+                    Dbg::error("name err");
+                    $this->redirect(route('signuppage'));
+                }
+            } else {
+                Dbg::error("pass empty");
+                $this->redirect(route('signuppage'));
+            }
+        } else {
+            Dbg::error("pass err");
+            $this->redirect(route('signuppage'));
+        }
     }
 
 }

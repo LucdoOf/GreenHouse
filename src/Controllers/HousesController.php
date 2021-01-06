@@ -26,7 +26,7 @@ class HousesController extends FrontController {
         $house->street = Request::valueRequest("street");
         $house->city_id = Request::valueRequest("city_id");
         $house->save();
-        $this->redirect(route('house', [$house->id]));
+        $this->redirect(route('houses'));
     }
 
 }

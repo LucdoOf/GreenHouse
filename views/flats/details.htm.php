@@ -31,7 +31,7 @@
             </div>
             <div class="box-footer">
                 <div class="button-group">
-                    <a href="<?= route('flat', [$flat->id]) ?>" class="button">Annuler</a>
+                    <a href="<?= route('flats') ?>" class="button">Annuler</a>
                     <button type="submit" class="button cta">Enregistrer</button>
                 </div>
             </div>

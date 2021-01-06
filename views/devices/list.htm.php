@@ -1,5 +1,12 @@
 <?php
-/** @var Device[] $devices */
+/** @var Device[] $devices
+ *  @var Type $types
+ *  @var Flat $flats
+ */
+
+use GreenHouse\Models\DeviceTypes;
+use GreenHouse\Models\Flat;
+
 ?>
 
 <div class="row">
@@ -10,18 +17,18 @@
                     <tr>
                         <th>Identifiant</th>
                         <th>Nom</th>
-                        <th>Id Appartement</th>
+                        <th>Appartement</th>
                         <th>Position</th>
                         <th>Type d'appareil</th>
-                        <th></th>
+                        <th><a href="<?= route('device.create.page') ?>" class="button">Ajouter un appareil</a></th>
                     </tr>
                     <?php foreach ($devices as $device): ?>
                         <tr>
                             <td><?= $device->id; ?></td>
                             <td><?= $device->name; ?></td>
-                            <td><?= $device->flat_id; ?></td>
+                            <td><a href="<?= route('flat', [$device->flat_id]) ?>" ><?= (new Flat($device->flat_id))->name; ?></a></td>
                             <td><?= $device->location; ?></td>
-                            <td><?= $device->device_type_id; ?></td>
+                            <td><?= (new DeviceTypes($device->device_type_id))->name; ?></td>
                             <td><a class="button" href="<?= route('device', [$device->id]) ?>"><i class="far fa-eye r"></i>Détails</a></td>
                         </tr>
                     <?php endforeach; ?>
