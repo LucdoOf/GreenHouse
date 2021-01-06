@@ -10,7 +10,7 @@
             <div class="box-content">
                 <div class="field">
                     <div class="label">Identifiant</div>
-                    <input name="id" class="value" type="text" value="<?= $flat->id; ?>"/>
+                    <input name="id" class="value" type="text" disabled value="<?= $flat->id; ?>"/>
                 </div>
                 <div class="field">
                     <div class="label">Nom</div>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="field">
                     <div class="label">Identifiant de la maison</div>
-                    <input name="flat_id" class="value" type="text" value="<?= $flat->house_id; ?>"/>
+                    <input name="house_id" class="value" type="text" value="<?= $flat->house_id; ?>"/>
                 </div>
                 <div class="field">
                     <div class="label">Identifiant du type d'appartement</div>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="field">
                     <div class="label">Niveau de sécurité</div>
-                    <input name="video" class="value" type="text" value="<?= $flat->security_level; ?>"/>
+                    <input name="security" class="value" type="text" value="<?= $flat->security_level; ?>"/>
                 </div>
             </div>
             <div class="box-footer">
