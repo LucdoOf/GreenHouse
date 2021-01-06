@@ -12,6 +12,7 @@ return [
     'test'      => ["GET", "/test/(.+)/test/(.+)", [LoginController::class, "test"]],
     'logout'    => ["GET", "/logout", [LoginController::class, "logout"]],
     'configuration'               => ["GET", "/configuration", [ConfigurationController::class, "configuration"]],
+    'configuration.types.create'        => ["POST", "/configuration/types/create", [ConfigurationController::class, "createType"]],
     'configuration.regions.create'      => ["POST", "/configuration/zones/regions/create", [ConfigurationController::class, "createRegion"]],
     'configuration.departments.create'  => ["POST", "/configuration/zones/regions/(.+)/departments/create", [ConfigurationController::class, "createDepartment"]],
     'configuration.cities.create'       => ["POST", "/configuration/zones/departments/(.+)/cities/create", [ConfigurationController::class, "createCity"]],

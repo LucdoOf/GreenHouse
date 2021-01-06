@@ -5,12 +5,13 @@ namespace GreenHouse\Controllers;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\City;
 use GreenHouse\Models\Department;
+use GreenHouse\Models\DeviceTypes;
 use GreenHouse\Models\Region;
 
 class ConfigurationController extends FrontController {
 
     public function configuration() {
-        $this->render("configuration.container", ["regions" => Region::getAll()]);
+        $this->render("configuration.container", ["regions" => Region::getAll(), "device_types" => DeviceTypes::getAll()]);
     }
 
     public function createRegion() {
@@ -20,7 +21,7 @@ class ConfigurationController extends FrontController {
             $region->name = $name;
             $region->save();
         }
-        $this->redirect(route("configuration.zones"));
+        $this->redirect(route("configuration"));
     }
 
     public function createDepartment($regionId) {
@@ -34,7 +35,7 @@ class ConfigurationController extends FrontController {
                 $department->save();
             }
         }
-        $this->redirect(route("configuration.zones"));
+        $this->redirect(route("configuration"));
     }
 
     public function createCity($departmentId) {
@@ -48,7 +49,17 @@ class ConfigurationController extends FrontController {
                 $city->save();
             }
         }
-        $this->redirect(route("configuration.zones"));
+        $this->redirect(route("configuration"));
+    }
+
+    public function createType() {
+        $name = Request::valueRequest("type_name");
+        if($name){
+            $device_type = new DeviceTypes();
+            $device_type->name = $name;
+            $device_type->save();
+        }
+        $this->redirect(route("configuration"));
     }
 
 }
