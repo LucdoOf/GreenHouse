@@ -7,11 +7,11 @@ use GreenHouse\Models\Room;
 
 class RoomsController extends FrontController{
 
-    public function listFlats() {
+    public function listRooms() {
         $this->render("rooms/list", ["rooms" => Room::getAll()]);
     }
 
-    public function flatDetails($id){
+    public function roomDetails($id){
         $this->render("rooms/details", ["room" => new Room($id)]);
     }
 
@@ -21,7 +21,7 @@ class RoomsController extends FrontController{
         $room->flat_id = Request::valueRequest("flat_id");
         $room->room_type_id = Request::valueRequest("type_id");
         $room->save();
-        $this->redirect(route('room', [$room->id]));
+        $this->redirect(route('room'));
     }
 
 }

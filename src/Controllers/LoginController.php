@@ -57,9 +57,9 @@ class LoginController extends FrontController {
     public function signup() {
         if(Request::valueRequest("password") == Request::valueRequest("password2")) {
             $user = new User();
-            if(Request::valueRequest("password") != "" /* Et pas ds Bd...*/) {
+            if(Request::valueRequest("password")) {
                 $user->password = Request::valueRequest("password");
-                if(Request::valueRequest("email") != "") {
+                if(Request::valueRequest("email")) {
                     $user->email = Request::valueRequest("email");
                     $user->active = 1;
                     $user->role = "user";
