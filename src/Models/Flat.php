@@ -9,8 +9,8 @@ class Flat extends Model
     const COLUMNS = [
         "id" => false,
         "name" => true,
-        "flat_type_id" => false,
         "house_id" => false,
+        "flat_type_id" => false,
         "security_level" => true,
     ];
 

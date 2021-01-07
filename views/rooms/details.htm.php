@@ -9,7 +9,7 @@
         <form method="POST" action="<?= route('room.edit', [$room->id]) ?>">
             <div class="box-content">
                 <div class="field">
-                    <div class="label">Identifiant</div>
+                    <div class="label">Identifiant de la pièce</div>
                     <input name="id" class="value" type="text" disabled value="<?= $room->id; ?>"/>
                 </div>
                 <div class="field">
