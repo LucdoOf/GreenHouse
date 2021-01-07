@@ -15,7 +15,7 @@ use GreenHouse\Models\House;
                         <th>Adresse</th>
                         <th>Degré d'isolation</th>
                         <th>Classement écologique</th>
-                        <th></th>
+                        <th><a class="button" href="<?= route('house.create.page') ?>" ><i class="fas fa-plus r"></i>Ajouter une maison</a></th>
                     </tr>
                     <?php foreach ($houses as $house): ?>
                         <tr>

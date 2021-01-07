@@ -5,6 +5,7 @@ namespace GreenHouse\Controllers;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\City;
 use GreenHouse\Models\House;
+use GreenHouse\Models\Flat;
 
 class HousesController extends FrontController {
 
@@ -13,7 +14,24 @@ class HousesController extends FrontController {
     }
 
     public function houseDetails($id){
-        $this->render("houses/details", ["house" => new House($id), "cities" => City::getAll()]);
+        $this->render("houses/details", ["house" => new House($id), "cities" => City::getAll(), "flats" => Flat::getAll(["house_id" => $id])]);
+    }
+
+    public function createPage(){
+        $this->render("houses/create", [ "cities" => City::getAll()]);
+    }
+
+    public function createHouse(){
+        $house = new House();
+        $house->name = Request::valueRequest("name");
+        $house->zipcode = Request::valueRequest("zipcode");
+        $house->number = Request::valueRequest("number");
+        $house->isolation_degree = Request::valueRequest("isolation_degree");
+        $house->eco_level = Request::valueRequest("eco_level");
+        $house->street = Request::valueRequest("street");
+        $house->city_id = Request::valueRequest("city_id");
+        $house->save();
+        $this->redirect(route('houses'));
     }
 
     public function editHouse($id){
@@ -26,7 +44,13 @@ class HousesController extends FrontController {
         $house->street = Request::valueRequest("street");
         $house->city_id = Request::valueRequest("city_id");
         $house->save();
-        $this->redirect(route('house', [$house->id]));
+        $this->redirect(route('houses'));
+    }
+
+    public function deleteHouse($id) {
+        $house = new House($id);
+        $house->delete();
+        $this->redirect(route('houses'));
     }
 
 }

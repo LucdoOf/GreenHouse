@@ -7,20 +7,22 @@ class User extends Model {
     const STORAGE = "users";
     const COLUMNS = [
       "id" => true,
-      "name" => false,
-      "password" => true,
+      "password" => false,
       "email" => false,
-      "active" => true,
+      "active" => false,
       "firstname" => false,
-      "lastname" => false
+      "lastname" => false,
+      "gender" => false,
+      "role" => false
     ];
 
-    public $name;
     public $password;
     public $email;
     public $active;
     public $firstname;
     public $lastname;
+    public $gender;
+    public $role;
 
     /**
      * Vérifie si le mot de passe est correct.

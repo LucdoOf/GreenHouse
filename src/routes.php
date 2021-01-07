@@ -9,7 +9,12 @@ use GreenHouse\Controllers\RoomsController;
 
 return [
     'login'     => ["GET", "/login", [LoginController::class, "login"]],
+    'signuppage' => ["GET", "/signup", [LoginController::class, "signuppage"]],
+    'signup' => ["POST", "/signup/post", [LoginController::class, "signup"]],
     'houses'    => ["GET", "/houses", [HousesController::class, "listHouses"]],
+    'house.create' => ["POST", "/house/create/post", [HousesController::class, "createHouse"]],
+    'house.create.page' => ["GET", "/house/create", [HousesController::class, "createPage"]],
+    'house.delete' => ["GET", "/houses/delete/(.+)", [HousesController::class, "deleteHouse"]],
     'house.edit'=> ["POST", "/houses/edit/(.+)", [HousesController::class, "editHouse"]],
     'house'     => ["GET", "/houses/(.+)", [HousesController::class, "houseDetails"]],
     'flats'    => ["GET", "/flats", [FlatsController::class, "listFlats"]],
@@ -27,6 +32,13 @@ return [
     'configuration.departments.create'  => ["POST", "/configuration/zones/regions/(.+)/departments/create", [ConfigurationController::class, "createDepartment"]],
     'configuration.cities.create'       => ["POST", "/configuration/zones/departments/(.+)/cities/create", [ConfigurationController::class, "createCity"]],
     'devices'       => ["GET", "/devices", [DevicesController::class, "listDevices"]],
+    'device.create' => ["POST", "/device/create/post", [DevicesController::class, "createDevice"]],
+    'device.create.page' => ["GET", "/device/create", [DevicesController::class, "createPage"]],
+    'device.delete' => ["GET", "/devices/delete/(.+)", [DevicesController::class, "deleteDevice"]],
     'device.edit'   => ["POST", "/devices/edit/(.+)", [DevicesController::class, "editDevice"]],
-    'device'        => ["GET", "/devices/(.+)", [DevicesController::class, "deviceDetails"]]
+    'device'        => ["GET", "/devices/(.+)", [DevicesController::class, "deviceDetails"]],
+    'configuration.substances.create'   => ["GET", "/configuration/substances/create", [ConfigurationController::class, "createSubstance"]],
+    'configuration.resources.create'    => ["GET", "/configuration/resources/create", [ConfigurationController::class, "createResource"]],
+    'configuration.substances.create.post' => ["POST", "/configuration/substances/create/post", [ConfigurationController::class, "createSubstancePost"]],
+    'configuration.resources.create.post'  => ["POST", "/configuration/resources/create/post", [ConfigurationController::class, "createResourcePost"]]
 ];

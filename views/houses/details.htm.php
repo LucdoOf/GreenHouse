@@ -1,6 +1,7 @@
 <?php
 /** @var House $house */
 /** @var Cities[] $cities */
+/** @var Flat[] $flats */
 ?>
 <div class="row">
     <div class="box col-6">
@@ -11,7 +12,7 @@
             <div class="box-content">
                 <div class="field">
                     <div class="label">Identifiant</div>
-                    <input name="id" class="value" type="text" value="<?= $house->id; ?>"/>
+                    <input name="id" class="value" type="text" value="<?= $house->id; ?>" disabled/>
                 </div>
                 <div class="field">
                     <div class="label">Nom</div>
@@ -49,10 +50,34 @@
             </div>
             <div class="box-footer">
                 <div class="button-group">
-                    <a href="<?= route('house', [$house->id]) ?>" class="button">Annuler</a>
+                    <a href="<?= route('houses') ?>" class="button">Annuler</a>
+                    <a onclick="confirm('Confirmer la suppression de la maison et de ces appartements ?') ? window.location = '<?= route('house.delete', [$house->id]) ?>' : void(0)" class="button red">Supprimer</a>
                     <button type="submit" class="button cta">Enregistrer</button>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="box col-6">
+        <div class="box-header">
+            <span class="box-title">Liste des appartements</span>
+        </div>
+        <div class="box-content">
+            <div class="table-wrapper">
+                <table class="table <?= empty($flats) ? 'empty' : '' ?>">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Nom</th>
+                        <th></th>
+                    </tr>
+                    <?php foreach ($flats as $flat): ?>
+                        <tr>
+                            <td><?= $flat->id; ?></td>
+                            <td><?= $flat->name; ?></td>
+                            <td><a class="button" href="<?= route('flat', [$flat->id]) ?>"><i class="far fa-eye r"></i>Détails</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
