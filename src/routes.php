@@ -16,7 +16,7 @@ return [
     'flat'     => ["GET", "/flat/(.+)", [FlatsController::class, "flatDetails"]],
     'rooms'    => ["GET", "/rooms", [FlatsController::class, "listRooms"]],
     'room.edit'=> ["POST", "/room/edit/(.+)", [FlatsController::class, "editRoom"]],
-    'room'     => ["GET", "/room/(.+)", [FlatsController::class, "roomDetails"]],
+    'room'     => ["GET", "/room/(.+)", [RoomsController::class, "roomDetails"]],
     'auth'      => ["POST", "/auth", [LoginController::class, "auth"]],
     'test'      => ["GET", "/test/(.+)/test/(.+)", [LoginController::class, "test"]],
     'logout'    => ["GET", "/logout", [LoginController::class, "logout"]],
