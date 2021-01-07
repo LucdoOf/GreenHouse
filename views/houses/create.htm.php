@@ -6,7 +6,7 @@
         <div class="box-header">
             <span class="box-title">Ajout d'une maison</span>
         </div>
-        <form method="POST" action="<?= route('house.edit') ?>">
+        <form method="POST" action="<?= route('house.create') ?>">
             <div class="box-content">
                 <div class="field">
                     <div class="label">Nom</div>
@@ -27,7 +27,7 @@
                 <div class="field">
                     <div class="label">Ville</div>
                     <select name="city_id" class="value">
-                        <option disabled>Sélectionner une ville</option>
+                        <option selected disabled>Sélectionner une ville</option>
                         <?php foreach ($cities as $city): ?>
                         <option value="<?= $city->id; ?>"><?= $city->name; ?></option>
                         <?php endforeach; ?>
