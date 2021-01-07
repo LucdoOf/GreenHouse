@@ -19,7 +19,7 @@
                             <td><?= $room->name; ?></td>
                             <td><?= $room->flat_id; ?></td>
                             <td><?= $room->room_type_id; ?></td>
-                            <td><a class="button" href="<?= route('flat', [$room->id]) ?>"><i class="far fa-eye r"></i>Modifier</a></td>
+                            <td><a class="button" href="<?= route('room', [$room->id]) ?>"><i class="far fa-eye r"></i>Modifier</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
