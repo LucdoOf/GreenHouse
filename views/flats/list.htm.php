@@ -21,7 +21,7 @@
                             <td><?= $flat->house_id; ?></td>
                             <td><?= $flat->flat_type_id; ?></td>
                             <td><?= $flat->security_level; ?></td>
-                            <td><a class="button" href="<?= route('flat', [$flat->id]) ?>"><i class="far fa-eye r"></i>Détails</a></td>
+                            <td><a class="button" href="<?= route('flat', [$flat->id]) ?>"><i class="far fa-eye r"></i>Modifier</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>

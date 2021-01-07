@@ -3,6 +3,7 @@ Fonctionnalités codées:
 - Listing / ajout de villes, départements et régions (Lucas)
 - Listing / détail des maisons (Arthur)
 - Listing / détail des appartements (Louis)
+- Listing / détail des Pièces (Louis)
 - Listing / ajout de types d'appareils (Eliott)
 - Connection (Eliott)
 - Listing / ajout des resources et substances (Lucas)
