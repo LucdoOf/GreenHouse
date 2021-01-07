@@ -5,6 +5,7 @@ use GreenHouse\Controllers\DevicesController;
 use GreenHouse\Controllers\HousesController;
 use GreenHouse\Controllers\FlatsController;
 use GreenHouse\Controllers\LoginController;
+use GreenHouse\Controllers\RoomsController;
 
 return [
     'login'     => ["GET", "/login", [LoginController::class, "login"]],
