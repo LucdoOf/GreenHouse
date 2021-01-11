@@ -16,8 +16,9 @@ Fonctionnalités codées:
 
 Fonctionnalités restantes:
 
-- Liste et détail des pièce (Louis)
+- Liste et détail des pièces (Louis)
 - Création de maison (Arthur)
 - Création d'appartement (Louis)
-- Statistiques (mesures...)
+
+- Statistiques (Mesures...)
 
