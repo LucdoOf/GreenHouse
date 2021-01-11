@@ -1,4 +1,4 @@
-Fonctionnalités codées:
+### Fonctionnalités codées:
 
 - Architecture fondamentale, SCSS et base du projet (Lucas)
 - Listing / ajout de villes, départements et régions (Lucas)
@@ -14,7 +14,7 @@ Fonctionnalités codées:
 - Listing / ajout de types d'appartements (Eliott)
 - Listing / ajout de types de pièces pour un type d'appartement donné (Eliott)
 
-Fonctionnalités restantes:
+### Fonctionnalités restantes:
 
 - Liste et détail des pièces (Louis)
 - Création de maison (Arthur)
