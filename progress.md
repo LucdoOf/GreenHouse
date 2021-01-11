@@ -1,4 +1,4 @@
-![60%](https://progress-bar.dev/60)
+Avancement: ![60%](https://progress-bar.dev/60)
 
 ### Fonctionnalités codées:
 
