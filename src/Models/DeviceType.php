@@ -2,7 +2,7 @@
 
 namespace GreenHouse\Models;
 
-class DeviceTypes extends Model
+class DeviceType extends Model
 {
 
     const STORAGE = "device_types";

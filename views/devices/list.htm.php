@@ -4,7 +4,7 @@
  *  @var Flat $flats
  */
 
-use GreenHouse\Models\DeviceTypes;
+use GreenHouse\Models\DeviceType;
 use GreenHouse\Models\Flat;
 
 ?>
@@ -28,7 +28,7 @@ use GreenHouse\Models\Flat;
                             <td><?= $device->name; ?></td>
                             <td><a href="<?= route('flat', [$device->flat_id]) ?>" ><?= (new Flat($device->flat_id))->name; ?></a></td>
                             <td><?= $device->location; ?></td>
-                            <td><?= (new DeviceTypes($device->device_type_id))->name; ?></td>
+                            <td><?= (new DeviceType($device->device_type_id))->name; ?></td>
                             <td><a class="button" href="<?= route('device', [$device->id]) ?>"><i class="far fa-eye r"></i>Détails</a></td>
                         </tr>
                     <?php endforeach; ?>

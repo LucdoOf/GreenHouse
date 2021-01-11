@@ -4,22 +4,22 @@ namespace GreenHouse\Controllers;
 
 use GreenHouse\Core\Request;
 use GreenHouse\Models\Device;
-use GreenHouse\Models\DeviceTypes;
+use GreenHouse\Models\DeviceType;
 use GreenHouse\Models\Flat;
 use GreenHouse\Utils\Dbg;
 
 class DevicesController extends FrontController {
 
     public function listDevices() {
-        $this->render("devices/list", ["devices" => Device::getAll(), "types" => DeviceTypes::getAll(), "flats" => Flat::getAll()]);
+        $this->render("devices/list", ["devices" => Device::getAll(), "types" => DeviceType::getAll(), "flats" => Flat::getAll()]);
     }
 
     public function deviceDetails($id){
-        $this->render("devices/details", ["device" => new Device($id), "types" => DeviceTypes::getAll(), "flats" => Flat::getAll()]);
+        $this->render("devices/details", ["device" => new Device($id), "types" => DeviceType::getAll(), "flats" => Flat::getAll()]);
     }
 
     public function createPage(){
-        $this->render("devices/create", ["types" => DeviceTypes::getAll(), "flats" => Flat::getAll()]);
+        $this->render("devices/create", ["types" => DeviceType::getAll(), "flats" => Flat::getAll()]);
     }
 
     public function editDevice($id){

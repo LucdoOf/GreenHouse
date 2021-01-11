@@ -5,20 +5,56 @@ namespace GreenHouse\Controllers;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\City;
 use GreenHouse\Models\Department;
-use GreenHouse\Models\DeviceTypes;
+use GreenHouse\Models\DeviceType;
+use GreenHouse\Models\FlatType;
 use GreenHouse\Models\HarmfullSubstance;
 use GreenHouse\Models\Region;
 use GreenHouse\Models\Resource;
+use GreenHouse\Models\RoomType;
+use GreenHouse\Models\RoomTypeFlatType;
 
 class ConfigurationController extends FrontController {
 
     public function configuration() {
         $this->render("configuration.container", [
             "regions" => Region::getAll(),
-            "device_types" => DeviceTypes::getAll(),
+            "device_types" => DeviceType::getAll(),
             "substances" => HarmfullSubstance::getAll(),
-            "resources" => Resource::getAll()
+            "resources" => Resource::getAll(),
+            "room_types" => RoomType::getAll(),
+            "flat_types" => FlatType::getAll()
         ]);
+    }
+
+    public function createLinkedTypeRooms($flatType_id) {
+        $roomTypeId = Request::valueRequest("linked_roomType");
+        if($roomTypeId && $flatType_id){
+            $roomTypeFlatType = new RoomTypeFlatType();
+            $roomTypeFlatType->flat_type_id = $flatType_id;
+            $roomTypeFlatType->room_type_id = $roomTypeId;
+            $roomTypeFlatType->save();
+        }
+        $this->redirect(route("configuration"));
+    }
+
+    public function createFlatType() {
+        $name = Request::valueRequest("flat_type_name");
+        if($name){
+            $flat_type = new FlatType();
+            $flat_type->name = $name;
+            $flat_type->save();
+        }
+        $this->redirect(route("configuration"));
+    }
+
+    public function createRoomType() {
+        $name = Request::valueRequest("room_type_name");
+        if($name){
+            $room_type = new RoomType();
+            $room_type->name = $name;
+            $room_type->save();
+        }
+        $this->redirect(route("configuration"));
     }
 
     public function createRegion() {
@@ -62,7 +98,7 @@ class ConfigurationController extends FrontController {
     public function createType() {
         $name = Request::valueRequest("type_name");
         if($name){
-            $device_type = new DeviceTypes();
+            $device_type = new DeviceType();
             $device_type->name = $name;
             $device_type->save();
         }

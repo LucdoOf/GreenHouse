@@ -7,7 +7,7 @@
 <div class="row">
     <div class="box col-6">
         <div class="box-header">
-            <span class="box-title"><?= $device->name; ?></span>
+            <span class="box-title">Nouvel appareil :</span>
         </div>
         <form method="POST" action="<?= route('device.create') ?>">
             <div class="box-content">
