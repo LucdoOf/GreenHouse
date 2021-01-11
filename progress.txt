@@ -12,7 +12,7 @@ Fonctionnalités codées:
 - Inscription (Eliott)
 - Listing / ajout de types de pièces (Lucas)
 - Listing / ajout de types d'appartements (Eliott)
-- Listing / ajout de types de pièces pour un type d'appartement donné
+- Listing / ajout de types de pièces pour un type d'appartement donné (Eliott)
 
 Fonctionnalités restantes:
 
