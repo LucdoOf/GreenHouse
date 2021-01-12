@@ -16,10 +16,11 @@
 - Listing / ajout de types d'appartements (Eliott)
 - Listing / ajout de types de pièces pour un type d'appartement donné (Eliott)
 - Liste et détail des pièces (Louis)
+- Création de maison (Arthur)
 
 ### Fonctionnalités restantes:
 
-- Création de maison (Arthur)
+
 - Création d'appartement (Louis)
 - Statistiques (Mesures...)
 
