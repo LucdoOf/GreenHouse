@@ -9,7 +9,7 @@ use GreenHouse\Models\RoomType;
         <div class="box-title">Types de pièces</div>
         <div class="box-actions">
             <div class="button-input">
-                <form method="POST" action="<?= route("configuration.typeRooms.create") ?>">
+                <form method="POST" action="<?= route("configuration.room-types.create") ?>">
                     <input class="input" name="room_type_name" type="text" placeholder="Cuisine"/>
                     <input class="button" type="submit" value="+"/>
                 </form>

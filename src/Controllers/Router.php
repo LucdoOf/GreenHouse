@@ -60,7 +60,6 @@ class Router {
             $matches = [];
             if (preg_match($routeRegex, $uri, $matches)) {
                 if ($_SERVER["REQUEST_METHOD"] == $routeMethod) {
-                    Dbg::error($routeRegex . " " . $uri);
                     $routeInfo["status"] = self::ROUTE_FOUND;
                     $routeInfo["handler"]["controller"] = $routeHandler[0];
                     $routeInfo["handler"]["method"] = $routeHandler[1];

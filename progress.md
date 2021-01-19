@@ -1,4 +1,4 @@
-![60%](https://progress-bar.dev/60)
+![70%](https://progress-bar.dev/60)
 
 ### Fonctionnalités codées:
 
@@ -17,10 +17,11 @@
 - Listing / ajout de types de pièces pour un type d'appartement donné (Eliott)
 - Liste et détail des pièces (Louis)
 - Création de maison (Arthur)
+- Listing / ajout de substances / resources par type d'appareils
 
 ### Fonctionnalités restantes:
 
-
 - Création d'appartement (Louis)
 - Statistiques (Mesures...)
+- Habitants par appartements
 

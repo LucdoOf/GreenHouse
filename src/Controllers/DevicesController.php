@@ -2,10 +2,12 @@
 
 namespace GreenHouse\Controllers;
 
+use DateTime;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\Device;
 use GreenHouse\Models\DeviceType;
 use GreenHouse\Models\Flat;
+use GreenHouse\Models\Measure;
 use GreenHouse\Utils\Dbg;
 
 class DevicesController extends FrontController {
@@ -51,6 +53,22 @@ class DevicesController extends FrontController {
         $device->save();
         $this->redirect(route('devices'));
 
+    }
+
+    public function createMeasure($id) {
+        $device = new Device($id);
+        if ($device->exist()) {
+            $startDate = Request::valueRequest("start_date");
+            $endDate = Request::valueRequest("end_date");
+            $measure = new Measure();
+            $measure->device_id = $device->id;
+            $measure->start_date = DateTime::createFromFormat("d/m/Y", $startDate)->format("Y-m-d");
+            $measure->end_date = DateTime::createFromFormat("d/m/Y",    $endDate)->format("Y-m-d");
+            $measure->save();
+            $this->redirect(route("device", [$id]));
+        } else {
+            $this->error_404();
+        }
     }
 
 }

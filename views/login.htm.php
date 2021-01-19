@@ -14,7 +14,7 @@
         <form method="post" action="<?= route("auth", ["redirect" => $redirect]) ?>">
             <input type="email" name="mail" placeholder="this@that.net" />
             <input type="password" name="password" placeholder="letmein" />
-            <a href="<?= route('signuppage')?>">Inscription</a>
+            <a href="<?= route('signup')?>">Inscription</a>
             <input class="button cta" type="submit" id="submit" value="Confirmer" />
         </form>
     </div>
