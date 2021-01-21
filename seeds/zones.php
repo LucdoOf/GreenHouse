@@ -7,9 +7,7 @@ use GreenHouse\Utils\Dbg;
 
 require "../src/boot.php";
 
-$zoneData = json_decode(include "zones.json", true);
-
-SQL::truncate(City::STORAGE);
+$zoneData = json_decode(file_get_contents("zones.json"), true);
 
 foreach ($zoneData as $data) {
     $department = Department::select(["name" => $data["admin_name"]]);
