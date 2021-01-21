@@ -108,11 +108,11 @@ $departments = [
 ];
 
 foreach ($departments as $departmentName => $regionName) {
-    $region = Region::select(["name" => addslashes($regionName)]);
-    if ($region->exist()) {
+    $regions = Region::search(addslashes($regionName));
+    if (!empty($regions)) {
         $department = new Department();
-        $department->region_id = $region->id;
-        $department->name = $departmentName;
+        $department->region_id = $regions[0]->id;
+        $department->name = addslashes($departmentName);
         $department->save();
     } else {
         Dbg::warning("Unknown region: " . $regionName);
