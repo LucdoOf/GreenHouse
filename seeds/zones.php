@@ -108,7 +108,7 @@ $departments = [
 ];
 
 foreach ($departments as $departmentName => $regionName) {
-    $region = Region::select(["name" => $regionName]);
+    $region = Region::select(["name" => addslashes($regionName)]);
     if ($region->exist()) {
         $department = new Department();
         $department->region_id = $region->id;
