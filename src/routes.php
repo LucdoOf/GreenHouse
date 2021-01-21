@@ -11,7 +11,7 @@ return [
     'login'                                             => ["GET", "/login", [LoginController::class, "login"]],
     'signup'                                            => ["GET", "/signup", [LoginController::class, "signup"]],
     'signup.post'                                       => ["POST", "/signup/post", [LoginController::class, "signupPost"]],
-    'houses'                                            => ["GET", "/houses", [HousesController::class, "listHouses"]],
+    'houses'                                            => ["GET", "", [HousesController::class, "listHouses"]],
     'house.create'                                      => ["POST", "/house/create/post", [HousesController::class, "createHouse"]],
     'house.create.page'                                 => ["GET", "/house/create", [HousesController::class, "createPage"]],
     'house.delete'                                      => ["GET", "/houses/delete/(.+)", [HousesController::class, "deleteHouse"]],
