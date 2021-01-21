@@ -18,6 +18,8 @@ return [
     'house.edit'                                        => ["POST", "/houses/edit/(.+)", [HousesController::class, "editHouse"]],
     'house'                                             => ["GET", "/houses/(.+)", [HousesController::class, "houseDetails"]],
     'flats'                                             => ["GET", "/flats", [FlatsController::class, "listFlats"]],
+    'flat.add-lodger.post'                          => ["POST", "/flat/(.+)/add-lodger/post", [FlatsController::class, "addLodgerPost"]],
+    'flat.add-lodger'                               => ["GET", "/flat/(.+)/add-lodger", [FlatsController::class, "addLodger"]],
     'flat.edit'                                         => ["POST", "/flat/edit/(.+)", [FlatsController::class, "editFlat"]],
     'flat'                                              => ["GET", "/flat/(.+)", [FlatsController::class, "flatDetails"]],
     'rooms'                                             => ["GET", "/rooms", [RoomsController::class, "listRooms"]],

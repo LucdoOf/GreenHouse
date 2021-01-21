@@ -13,7 +13,7 @@ use GreenHouse\Models\HarmfullSubstance;
     </div>
     <div class="box-content">
         <div class="table-wrapper">
-            <table class="table <?= empty($houses) ? 'empty' : '' ?>">
+            <table class="table <?= empty($substances) ? 'empty' : '' ?>">
                 <tr>
                     <th>Nom</th>
                     <th>Description</th>
