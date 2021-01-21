@@ -5,6 +5,8 @@ use GreenHouse\Models\Department;
 use GreenHouse\Models\SQL;
 use GreenHouse\Utils\Dbg;
 
+require "../src/boot.php";
+
 $zoneData = json_decode(include "zones.json", true);
 
 SQL::truncate(City::STORAGE);
