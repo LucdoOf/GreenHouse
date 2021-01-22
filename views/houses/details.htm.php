@@ -67,7 +67,7 @@
                     <tr>
                         <th>Identifiant</th>
                         <th>Nom</th>
-                        <th></th>
+                        <th><a class="button" href="<?= route('flat.create.page', [$house->id]) ?>" ><i class="fas fa-plus r"></i>Ajouter un appartement</a></th>
                     </tr>
                     <?php foreach ($flats as $flat): ?>
                         <tr>

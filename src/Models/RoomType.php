@@ -2,10 +2,10 @@
 
 namespace GreenHouse\Models;
 
-class DeviceTypes extends Model
+class RoomType extends Model
 {
 
-    const STORAGE = "device_types";
+    const STORAGE = "room_types";
     const COLUMNS = [
         "id" => true,
         "name" => false,

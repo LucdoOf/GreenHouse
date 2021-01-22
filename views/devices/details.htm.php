@@ -59,4 +59,9 @@
             </div>
         </form>
     </div>
+    <?php include "stats.htm.php" ?>
+</div>
+
+<div class="row">
+    <?php include "measures.htm.php" ?>
 </div>

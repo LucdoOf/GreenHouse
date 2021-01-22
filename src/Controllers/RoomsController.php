@@ -21,7 +21,7 @@ class RoomsController extends FrontController{
         $room->flat_id = Request::valueRequest("flat_id");
         $room->room_type_id = Request::valueRequest("type_id");
         $room->save();
-        $this->redirect(route('room', [$room->id]));
+        $this->redirect(route('room'));
     }
 
 }

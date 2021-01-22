@@ -5,20 +5,58 @@ namespace GreenHouse\Controllers;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\City;
 use GreenHouse\Models\Department;
-use GreenHouse\Models\DeviceTypes;
+use GreenHouse\Models\Device;
+use GreenHouse\Models\DeviceType;
+use GreenHouse\Models\FlatType;
 use GreenHouse\Models\HarmfullSubstance;
 use GreenHouse\Models\Region;
 use GreenHouse\Models\Resource;
+use GreenHouse\Models\RoomType;
+use GreenHouse\Models\RoomTypeFlatType;
+use GreenHouse\Models\SQL;
 
 class ConfigurationController extends FrontController {
 
     public function configuration() {
         $this->render("configuration.container", [
             "regions" => Region::getAll(),
-            "device_types" => DeviceTypes::getAll(),
+            "device_types" => DeviceType::getAll(),
             "substances" => HarmfullSubstance::getAll(),
-            "resources" => Resource::getAll()
+            "resources" => Resource::getAll(),
+            "room_types" => RoomType::getAll(),
+            "flat_types" => FlatType::getAll()
         ]);
+    }
+
+    public function linkRoomType($flatType_id) {
+        $roomTypeId = Request::valueRequest("linked_roomType");
+        if($roomTypeId && $flatType_id){
+            $roomTypeFlatType = new RoomTypeFlatType();
+            $roomTypeFlatType->flat_type_id = $flatType_id;
+            $roomTypeFlatType->room_type_id = $roomTypeId;
+            $roomTypeFlatType->save();
+        }
+        $this->redirect(route("configuration"));
+    }
+
+    public function createFlatType() {
+        $name = Request::valueRequest("flat_type_name");
+        if($name){
+            $flat_type = new FlatType();
+            $flat_type->name = $name;
+            $flat_type->save();
+        }
+        $this->redirect(route("configuration"));
+    }
+
+    public function createRoomType() {
+        $name = Request::valueRequest("room_type_name");
+        if($name){
+            $room_type = new RoomType();
+            $room_type->name = $name;
+            $room_type->save();
+        }
+        $this->redirect(route("configuration"));
     }
 
     public function createRegion() {
@@ -59,10 +97,10 @@ class ConfigurationController extends FrontController {
         $this->redirect(route("configuration"));
     }
 
-    public function createType() {
+    public function createDeviceType() {
         $name = Request::valueRequest("type_name");
         if($name){
-            $device_type = new DeviceTypes();
+            $device_type = new DeviceType();
             $device_type->name = $name;
             $device_type->save();
         }
@@ -99,6 +137,69 @@ class ConfigurationController extends FrontController {
         $substance->critical_value = Request::valueRequest("critical_value");
         $substance->save();
         $this->redirect(route("configuration"));
+    }
+
+    public function deviceTypeDetails($id) {
+        $deviceType = new DeviceType($id);
+        if ($deviceType->exist()) {
+            $this->render("configuration.deviceTypes.details", ["deviceType" => $deviceType]);
+        } else {
+            $this->error_404();
+        }
+    }
+
+    public function linkResource($id) {
+        $deviceType = new DeviceType($id);
+        if ($deviceType->exist()) {
+            $this->render("configuration.resources.link", ["deviceType" => $deviceType]);
+        } else {
+            $this->error_404();
+        }
+    }
+
+    public function linkResourcePost($id) {
+        $deviceType = new DeviceType($id);
+        if ($deviceType->exist()) {
+            $consumptionRate = Request::valueRequest("consumption_rate");
+            $resourceId = Request::valueRequest("resource_id");
+            if ($consumptionRate && $resourceId) {
+                SQL::insert(DeviceType::RESOURCES_LINK_STORAGE, [
+                    "consumption_rate" => $consumptionRate,
+                    "resource_id" => $resourceId,
+                    "device_type_id" => $deviceType->id
+                ]);
+                $this->redirect(route("configuration.device-type", [$deviceType->id]));
+            }
+        } else {
+            $this->error_404();
+        }
+    }
+
+    public function linkSubstance($id) {
+        $deviceType = new DeviceType($id);
+        if ($deviceType->exist()) {
+            $this->render("configuration.substances.link", ["deviceType" => $deviceType]);
+        } else {
+            $this->error_404();
+        }
+    }
+
+    public function linkSubstancePost($id) {
+        $deviceType = new DeviceType($id);
+        if ($deviceType->exist()) {
+            $productionRate = Request::valueRequest("production_rate");
+            $substanceId = Request::valueRequest("substance_id");
+            if ($productionRate && $substanceId) {
+                SQL::insert(DeviceType::SUBSTANCES_LINK_STORAGE, [
+                    "production_rate" => $productionRate,
+                    "harmfull_substance_id" => $substanceId,
+                    "device_type_id" => $deviceType->id
+                ]);
+                $this->redirect(route("configuration.device-type", [$deviceType->id]));
+            }
+        } else {
+            $this->error_404();
+        }
     }
 
 }

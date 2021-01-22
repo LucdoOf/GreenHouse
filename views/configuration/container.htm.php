@@ -12,3 +12,7 @@ use GreenHouse\Models\Region;
     <?php include "resources/list.htm.php"; ?>
     <?php include "substances/list.htm.php"; ?>
 </div>
+<div class="row">
+    <?php include "roomTypes/list.htm.php"; ?>
+    <?php include "flatTypes/list.htm.php"; ?>
+</div>

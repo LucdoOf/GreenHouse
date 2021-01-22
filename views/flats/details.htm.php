@@ -1,5 +1,10 @@
 <?php
-/** @var Flat $flat */
+/** @var Flat $flat
+ *  @var Lodger[] $lodgers
+ */
+
+use GreenHouse\Models\User;
+
 ?>
 <div class="row">
     <div class="box col-6">
@@ -37,4 +42,40 @@
             </div>
         </form>
     </div>
+    <div class="box col-6">
+        <div class="box-header">
+            <span class="box-title">Habitants</span>
+            <div class="box-actions">
+                <a class="button" onclick="lodgersModal.show()">Ajouter</a>
+            </div>
+        </div>
+        <div class="box-content">
+            <div class="table-wrapper">
+                <table class="table <?= empty($lodgers) ? 'empty' : '' ?>">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Date d'arrivée</th>
+                        <th>Date de départ</th>
+                    </tr>
+                    <?php foreach ($lodgers as $lodger): ?>
+                        <tr>
+                            <td><?= (new User($lodger["user_id"]))->lastname?></td>
+                            <td><?= (new User($lodger["user_id"]))->firstname?></td>
+                            <td><?= $lodger["start_date"]?></td>
+                            <td><?= $lodger["end_date"] ? $lodger["end_date"] : "Undefined"?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    let lodgersModal;
+    window.addEventListener("load", () => {
+        lodgersModal = new Modal({view_url: '<?= route("flat.add-lodger", [$flat->id])?>', title: 'Ajouter un habitant'});
+        lodgersModal.build();
+    });
+</script>

@@ -77,3 +77,16 @@ function route($route, $var = null) {
 function get_called_url() {
     return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 }
+
+/**
+ * Retourne le nombre de jours entre deux dates
+ *
+ * @param $start DateTime
+ * @param $end DateTime
+ * @return mixed
+ */
+function count_days_between($start, $end) {
+    if (is_string($start)) $start = DateTime::createFromFormat("Y-m-d", $start);
+    if (is_string($end)) $end = DateTime::createFromFormat("Y-m-d", $end);
+    return $start->diff($end)->days;
+}

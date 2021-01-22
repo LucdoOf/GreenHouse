@@ -19,8 +19,8 @@
                 <option>Femme</option>
                 <option>Autre</option>
             </select>
-            <div class="button-group">
-                <a href="<?= route('login') ?>" class="button">Annuler</a>
+            <div class="button-group center">
+                <a href="<?= route('login') ?>" class="button" style="margin-top: 15px">Annuler</a>
                 <input class="button cta" type="submit" id="submit" value="Confirmer" />
             </div>
         </form>

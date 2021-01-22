@@ -9,3 +9,8 @@
     border: 1px solid $primaryColorHover;
   }
 }
+
+.select {
+  @extend .input;
+  cursor: pointer;
+}

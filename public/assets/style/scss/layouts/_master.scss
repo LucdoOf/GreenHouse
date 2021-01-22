@@ -36,6 +36,7 @@
           cursor: pointer;
           padding: 25px;
           transition: 200ms all ease;
+          text-decoration: none !important;
 
           &.active {
             background-color: $primaryColorLight;

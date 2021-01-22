@@ -50,16 +50,16 @@ class LoginController extends FrontController {
         $this->redirect(route("login"));
     }
 
-    public function signuppage(){
+    public function signup(){
         $this->render("signup");
     }
 
-    public function signup() {
+    public function signupPost() {
         if(Request::valueRequest("password") == Request::valueRequest("password2")) {
             $user = new User();
-            if(Request::valueRequest("password") != "" /* Et pas ds Bd...*/) {
+            if(Request::valueRequest("password")) {
                 $user->password = Request::valueRequest("password");
-                if(Request::valueRequest("email") != "") {
+                if(Request::valueRequest("email")) {
                     $user->email = Request::valueRequest("email");
                     $user->active = 1;
                     $user->role = "user";
@@ -70,15 +70,15 @@ class LoginController extends FrontController {
                     $this->redirect(route('login'));
                 } else {
                     Dbg::error("name err");
-                    $this->redirect(route('signuppage'));
+                    $this->redirect(route('signup'));
                 }
             } else {
                 Dbg::error("pass empty");
-                $this->redirect(route('signuppage'));
+                $this->redirect(route('signup'));
             }
         } else {
             Dbg::error("pass err");
-            $this->redirect(route('signuppage'));
+            $this->redirect(route('signup'));
         }
     }
 

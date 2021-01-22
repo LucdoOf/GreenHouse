@@ -6,6 +6,7 @@ class Flat extends Model
 {
 
     const STORAGE = "flats";
+    const LODGER_LINK_TABLE = "flats_lodgers";
     const COLUMNS = [
         "id" => false,
         "name" => true,
