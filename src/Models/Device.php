@@ -53,8 +53,8 @@ class Device extends Model {
     public function getProductionAt(HarmfullSubstance $substance, DateTime $date) {
         $toReturn = 0;
         foreach ($this->getLinkedMeasures() as $measure) {
-            if ($measure->startDate()->getTimestamp() < $date->getTimestamp() && $measure->endDate()->getTimestamp() < $date->getTimestamp()) {
-                $toReturn += $this->getType()->getProductionRateFor($substance) * count_days_between($measure->startDate(), $measure->endDate());
+            if ($measure->endDate()->getTimestamp() <= $date->getTimestamp()) {
+                $toReturn += ($this->getType()->getProductionRateFor($substance))*24 * count_days_between($measure->startDate(), $measure->endDate());
             }
         }
         return $toReturn;
@@ -84,26 +84,28 @@ class Device extends Model {
      */
     public function getFormatedStatsArray() {
         $data = [];
+        $labels = [];
 
         foreach ($this->getLinkedMeasures() as $measure) {
+            $labels[] = $measure->startDate()->format("d/m/Y") . ' - ' . $measure->endDate()->format("d/m/Y");
+
             foreach ($this->getType()->getLinkedSubstances() as $substance) {
                 $data[$substance->name][] = $this->getProductionAt($substance, $measure->endDate());
             }
             foreach ($this->getType()->getLinkedResources() as $resource) {
                 $data[$resource->name][] = $this->getConsumptionAt($resource, $measure->endDate());
+
             }
         }
 
-        $toReturn = [];
+        $toReturn = ["datasets" => [], "labels" => $labels];
         foreach ($data as $key => $value) {
-            $toReturn[] = [
+            $toReturn["datasets"][] = [
                 "label" => $key,
-                "data" => $value
+                "data" => $value,
+                "backgroundColor" => 'rgba(' . random_int(0,255) . ',' . random_int(0,255) . ',' . random_int(0,255) . ', 0.2)'
             ];
         }
-
-        Dbg::logs("Stats:");
-        Dbg::logs($toReturn);
 
         return $toReturn;
     }

@@ -18,9 +18,7 @@ use GreenHouse\Models\Device;
     window.addEventListener("load", () => {
         new Chart(document.getElementById("chart"), {
             type: 'line',
-            data: {
-                datasets: <?= json_encode($device->getFormatedStatsArray()) ?>
-            },
+            data: <?= json_encode($device->getFormatedStatsArray()) ?>
         });
     });
 </script>
