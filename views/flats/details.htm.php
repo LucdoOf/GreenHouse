@@ -63,7 +63,7 @@ use GreenHouse\Models\User;
                             <td><?= (new User($lodger["user_id"]))->lastname?></td>
                             <td><?= (new User($lodger["user_id"]))->firstname?></td>
                             <td><?= $lodger["start_date"]?></td>
-                            <td><?= $lodger["end_date"] ? $lodger["end_date"] : "Undefined"?></td>
+                            <td><?= $lodger["end_date"] ?? "&mdash;" ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>

@@ -1,5 +1,7 @@
 <?php
 
+use GreenHouse\Utils\Dbg;
+
 /**
  * Retourne true si l'environnement est en mode développement
  *

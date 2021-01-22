@@ -103,7 +103,6 @@ class Auth {
         $email = isset($_COOKIE[self::COOKIE_EMAIL]) ? $_COOKIE[self::COOKIE_EMAIL] : null;
         $password = isset($_COOKIE[self::COOKIE_PASSWORD]) ? $_COOKIE[self::COOKIE_PASSWORD] : null;
         if (!is_null($email) && !is_null($password)) {
-            Dbg::error($email." ".$password);
             return $this->login($email, $password);
         } else {
             $this->logout();

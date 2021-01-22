@@ -29,7 +29,7 @@ class FlatsController extends FrontController{
     }
 
     public function addLodger($id){
-        $this->render("flats.createLodger", ["flat" => new Flat($id), "flats" => Flat::getAll(), "users" => User::getAll()]);
+        $this->render("flats.create-lodger", ["flat" => new Flat($id), "flats" => Flat::getAll(), "users" => User::getAll()]);
     }
 
     public function addLodgerPost($id){
