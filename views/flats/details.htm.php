@@ -2,6 +2,7 @@
 /** @var Flat $flat
  *  @var Lodger[] $lodgers
  *  @var Houses[] $houses
+ *  @var FlatType[] $flat_types
  */
 
 use GreenHouse\Models\User;
@@ -23,12 +24,13 @@ use GreenHouse\Models\User;
                     <input name="name" class="value" type="text" value="<?= $flat->name; ?>"/>
                 </div>
                 <div class="field">
-                    <div class="label">Identifiant de la maison</div>
-                    <input name="house_id" class="value" type="text" value="<?= $flat->house_id; ?>"/>
-                </div>
-                <div class="field">
                     <div class="label">Type d'appartement</div>
-                    <input name="type_id" class="value" type="text" value="<?= $flat->flat_type_id; ?>"/>
+                    <select name="type_id" class="value">
+                        <option disabled>Sélectionner un type d'appartement</option>
+                        <?php foreach ($flat_types as $flat_type): ?>
+                            <option <?php if($flat_type->id == $flat->flat_type_id){echo "selected";} ?>value="<?= $flat_type->id; ?>"><?= $flat_type->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="field">
                     <div class="label">Niveau de sécurité</div>

@@ -11,8 +11,8 @@
                         <th>Nom</th>
                         <th>Id Maison</th>
                         <th>Type d'appartement</th>
-                        <th>Sécurité</th>
-                        <th></th>
+                        <th>Niveau de sécurité</th>
+                        <th><a class="button" href="<?= route('flat.create.page') ?>" ><i class="fas fa-plus r"></i>Ajouter un appartement</a></th>
                     </tr>
                     <?php foreach ($flats as $flat): ?>
                         <tr>

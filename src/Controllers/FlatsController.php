@@ -3,7 +3,9 @@
 namespace GreenHouse\Controllers;
 
 use GreenHouse\Core\Request;
+use GreenHouse\Models\House;
 use GreenHouse\Models\Flat;
+use GreenHouse\Models\FlatType;
 use GreenHouse\Models\SQL;
 use GreenHouse\Models\User;
 use GreenHouse\Utils\Dbg;
@@ -15,7 +17,17 @@ class FlatsController extends FrontController{
     }
 
     public function flatDetails($id){
-        $this->render("flats/details", ["flat" => new Flat($id), "lodgers" => SQL::select(Flat::LODGER_LINK_TABLE, ["flat_id" => $id]),"houses" => House::getAll()]);
+        $this->render("flats/details", ["flat" => new Flat($id), "lodgers" => SQL::select(Flat::LODGER_LINK_TABLE, ["flat_id" => $id]),"houses" => House::getAll(), "flat_types" => FlatType::getAll()]);
+    }
+
+    public function createFlat(){
+        $flat = new Flat();
+        $flat->name = Request::valueRequest("name");
+        $flat->house_id = Request::valueRequest("house_id");
+        $flat->flat_type_id = Request::valueRequest("type_id");
+        $flat->security_level = Request::valueRequest("security");
+        $flat->save();
+        $this->redirect(route('flats'));
     }
 
     public function editFlat($id){
@@ -27,6 +39,17 @@ class FlatsController extends FrontController{
         $flat->save();
         $this->redirect(route('flats'));
     }
+
+    public function createPage(){
+        $this->render("flats/create", [ "houses" => House::getAll(), "flat_types" => FlatType::getAll()]);
+    }
+
+    public function deleteFlat($id) {
+        $flat = new Flat($id);
+        $flat->delete();
+        $this->redirect(route('flats'));
+    }
+
 
     public function addLodger($id){
         $this->render("flats.createLodger", ["flat" => new Flat($id), "flats" => Flat::getAll(), "users" => User::getAll()]);
