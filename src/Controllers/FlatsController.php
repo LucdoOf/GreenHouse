@@ -6,6 +6,7 @@ use GreenHouse\Core\Request;
 use GreenHouse\Models\House;
 use GreenHouse\Models\Flat;
 use GreenHouse\Models\FlatType;
+use GreenHouse\Models\Room;
 use GreenHouse\Models\SQL;
 use GreenHouse\Models\User;
 use GreenHouse\Utils\Dbg;
@@ -17,7 +18,16 @@ class FlatsController extends FrontController{
     }
 
     public function flatDetails($id){
-        $this->render("flats/details", ["flat" => new Flat($id), "lodgers" => SQL::select(Flat::LODGER_LINK_TABLE, ["flat_id" => $id]),"houses" => House::getAll(), "flat_types" => FlatType::getAll()]);
+        $flat = new Flat($id);
+        if ($flat->exist()) {
+            $this->render("flats/details", [
+                "flat" => $flat,
+                "lodgers" => SQL::select(Flat::LODGER_LINK_TABLE, ["flat_id" => $id]),
+                "rooms" => Room::getAll(["flat_id" => $id]),
+                "houses" => House::getAll(),
+                "flat_types" => FlatType::getAll()
+            ]);
+        } else $this->error_404();
     }
 
     public function createFlat(){
@@ -53,6 +63,10 @@ class FlatsController extends FrontController{
 
     public function addLodger($id){
         $this->render("flats.create-lodger", ["flat" => new Flat($id), "flats" => Flat::getAll(), "users" => User::getAll()]);
+    }
+
+    public function addRoom($id){
+        $this->render("flats.create-room", ["flat" => new Flat($id)]);
     }
 
     public function addLodgerPost($id){

@@ -1,5 +1,9 @@
 <?php
 /** @var Flat[] $flats */
+
+use GreenHouse\Models\Flat;
+use GreenHouse\Models\FlatType;
+
 ?>
 <div class="row">
     <div class="box no-padding col-12">
@@ -19,7 +23,7 @@
                             <td><?= $flat->id; ?></td>
                             <td><?= $flat->name; ?></td>
                             <td><?= $flat->house_id; ?></td>
-                            <td><?= $flat->flat_type_id; ?></td>
+                            <td><?= (new FlatType($flat->flat_type_id))->name ?></td>
                             <td><?= $flat->security_level; ?></td>
                             <td><a class="button" href="<?= route('flat', [$flat->id]) ?>"><i class="far fa-eye r"></i>Modifier</a></td>
                         </tr>

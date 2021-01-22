@@ -7,10 +7,6 @@ use GreenHouse\Models\Room;
 
 class RoomsController extends FrontController{
 
-    public function listRooms() {
-        $this->render("rooms/list", ["rooms" => Room::getAll()]);
-    }
-
     public function roomDetails($id){
         $this->render("rooms/details", ["room" => new Room($id)]);
     }
