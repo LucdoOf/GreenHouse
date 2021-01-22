@@ -15,7 +15,7 @@ class FlatsController extends FrontController{
     }
 
     public function flatDetails($id){
-        $this->render("flats/details", ["flat" => new Flat($id), "lodgers" => SQL::select(Flat::LODGER_LINK_TABLE, ["flat_id" => $id])]);
+        $this->render("flats/details", ["flat" => new Flat($id), "lodgers" => SQL::select(Flat::LODGER_LINK_TABLE, ["flat_id" => $id]),"houses" => House::getAll()]);
     }
 
     public function editFlat($id){

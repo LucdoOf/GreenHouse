@@ -1,6 +1,7 @@
 <?php
 /** @var Flat $flat
  *  @var Lodger[] $lodgers
+ *  @var Houses[] $houses
  */
 
 use GreenHouse\Models\User;
@@ -15,7 +16,7 @@ use GreenHouse\Models\User;
             <div class="box-content">
                 <div class="field">
                     <div class="label">Identifiant de l'appartement</div>
-                    <input name="id" class="value" type="text" disabled value="<?= $flat->id; ?>"/>
+                    <input name="id" class="value" type="text" disabled value="<?= $flat->id; ?>"disabled/>
                 </div>
                 <div class="field">
                     <div class="label">Nom de l'appartement</div>
@@ -33,10 +34,20 @@ use GreenHouse\Models\User;
                     <div class="label">Niveau de sécurité</div>
                     <input name="security" class="value" type="text" value="<?= $flat->security_level; ?>"/>
                 </div>
+                <div class="field">
+                    <div class="label">Maison</div>
+                    <select name="house_id" class="value">
+                        <option disabled>Sélectionner une maison</option>
+                        <?php foreach ($houses as $house): ?>
+                            <option <?php if($house->id == $flat->house_id){echo "selected";} ?> value="<?= $house->id; ?>"><?= $house->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
             </div>
             <div class="box-footer">
                 <div class="button-group">
                     <a href="<?= route('flats') ?>" class="button">Annuler</a>
+                    <a onclick="confirm('Confirmer la suppression de l\'appartement ?') ? window.location = '<?= route('flat.delete', [$flat->id]) ?>' : void(0)" class="button red">Supprimer</a>
                     <button type="submit" class="button cta">Enregistrer</button>
                 </div>
             </div>
