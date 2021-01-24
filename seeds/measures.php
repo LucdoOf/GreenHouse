@@ -31,7 +31,6 @@ for ($i = 0; $i < $measureCount; $i++) {
     foreach (Flat::getAll() as $flat) {
         $count = rand(1, 4);
         for ($j = 0; $j < $count; $j++) {
-            Dbg::logs($users[$userIndex]);
             SQL::insert(Flat::LODGERS_LINK_TABLE, [
                 "user_id" => $users[$userIndex]->id,
                 "flat_id" => $flat->id,

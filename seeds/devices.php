@@ -14,6 +14,7 @@ SQL::truncate(HarmfullSubstance::STORAGE);
 SQL::truncate(Resource::STORAGE);
 SQL::truncate(DeviceType::SUBSTANCES_LINK_STORAGE);
 SQL::truncate(DeviceType::RESOURCES_LINK_STORAGE);
+SQL::truncate(DeviceType::STORAGE);
 
 foreach (["Eau", "Électricité", "Gaz"] as $resourceName) {
     $resource = new Resource();
