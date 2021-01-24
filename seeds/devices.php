@@ -14,11 +14,12 @@ SQL::truncate(HarmfullSubstance::STORAGE);
 SQL::truncate(Resource::STORAGE);
 SQL::truncate(DeviceType::SUBSTANCES_LINK_STORAGE);
 SQL::truncate(DeviceType::RESOURCES_LINK_STORAGE);
+SQL::truncate(DeviceType::STORAGE);
 
 foreach (["Eau", "Électricité", "Gaz"] as $resourceName) {
     $resource = new Resource();
     $resource->name = $resourceName;
-    $resource->description = "L'" . $resourceName . ", c'est bien";
+    $resource->description = addslashes("L'" . $resourceName . ", c'est bien");
     $resource->min_value = 0;
     $resource->max_value = 100*24*30;
     $resource->critical_value = 150*24*30;
@@ -64,8 +65,8 @@ foreach (Room::getAll() as $room) {
         $device = new Device();
         $device->name = $deviceType->name;
         $device->demonstration_video = "https://www.youtube.com/watch?v=J13GI4Xik1o&ab_channel=Gojira";
-        $device->location = $possibleLocations[rand(0, count($possibleLocations)-1)];
-        $device->description = "C'est un bel appareil";
+        $device->location = addslashes($possibleLocations[rand(0, count($possibleLocations)-1)]);
+        $device->description = addslashes("C'est un bel appareil");
         $device->device_type_id = $deviceType->id;
         $device->flat_id = $room->flat_id;
         $device->save();

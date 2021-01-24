@@ -29,8 +29,8 @@ for ($i = 0; $i < $measureCount; $i++) {
     }
 
     foreach (Flat::getAll() as $flat) {
-        for ($i = 0; $i < rand(1, 4); $i++) {
-            Dbg::logs($users[$userIndex]);
+        $count = rand(1, 4);
+        for ($j = 0; $j < $count; $j++) {
             SQL::insert(Flat::LODGERS_LINK_TABLE, [
                 "user_id" => $users[$userIndex]->id,
                 "flat_id" => $flat->id,
