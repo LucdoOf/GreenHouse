@@ -5,7 +5,7 @@
  */
 ?>
 <div class="row">
-    <div class="box col-6">
+    <div class="box col-12 col-md-6">
         <div class="box-header">
             <span class="box-title"><?= $device->name; ?></span>
         </div>
