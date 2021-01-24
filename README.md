@@ -2,6 +2,11 @@
 
 GreenHouse est un projet encadré de Polytech Tours permettant la gestion de maisons et d'appartements sur le plan écologique.
 
+## Membres du projet
+
+Garofalo Lucas - Tardieu Eliott - Le Floch Arthur - Lecoeur Louis
+
+
 ## Installation du projet
 
 1) À la demande du corps enseignant, **le projet n'utilise aucune librairie**. Nous avons recréé entièrement certaines 
@@ -27,7 +32,7 @@ comme SGBD avec PhpMyAdmin.
 1) Nous utilisons Font Awesome (https://fontawesome.com/start) pour intégrer des icônes. Pour insérer une icône, 
 il suffit d'écrire un tag `<i>` avec la classe correspondant à l'icône voulue (trouvée sur le site de Font Awesome)
 
-> Exemple <i class="fas fa-vials"></i> correspond à une éprouvette
+> Exemple <i class="fas fa-vials"></i>` correspond à une éprouvette
 
 2) Les fichiers de style inclus dans le projet sont générés par minification et compilation de fichier SCSS. 
 Par soucis de temps, nous nous contenterons d'une architecture SCSS simples en n'utilisant que très peu de fonctionnalités
@@ -144,3 +149,52 @@ Pour finir, notre implémentation de routes avec un système de `regex` permet d
 Par exemple, si on souhaite avoir uniquement un nombre dans l'URL ci-dessus, il faudrait renseigner dans le fichier routes: 
 `/houses/([0-9]+)`, appeler `/houses/test` provoquera une 404, alors que `/houses/2` appellera correctement la méthode du 
 contrôleur.
+
+#### Capture d'écran de la base de donnée sous notre SGBDR (phpmyadmin)
+
+![Image SGBDR](https://imgur.com/x4Mbi78.png)
+
+Ici il y a le détail de toutes les tables, et nous sommes fier de notre travail global, voilà pourquoi nous n'avons pas ajouté de photo de quelques tables particulières.
+
+#### Exemple de création de page
+
+Pour développer notre site web nous nous sommes tournés vers un site web structuré en MVC (Modèle Vue Contrôleur) afin de faciliter son développement et permettant de créer un site de manière efficace sans avoir à se compliquer la vie pour implémenter des pages.
+
+Comme son nom l'indique, l'architecture MVC possède trois éléments.
+Tout d’abord le modèle qui va nous permettre de récupérer les données de notre base de données pour les incorporer dans notre site.
+La vue quant à elle va être l’interface directe entre l’utilisateur et le site, c’est ce qui sera visible.
+Et enfin, le contrôleur sert de passerelle entre le modèle et la vue. C'est lui qui organise la manière dont sont affichées les vues mais aussi quelles données doivent être importées ou exportées vers le modèle.
+Dans notre site, nous avons également utilisé des “routes” qui permettent de gérer au mieux les URL du site.
+
+Exemple d’une page affichant la liste des maisons sur le site :
+
+![Image page web](https://imgur.com/yaMsy5h.png)
+
+Pour pouvoir intégrer cette liste dans notre site il nous faut donc 3 fichiers différents pour correspondre avec l’architecture MVC. Tout d’abord nous voulons pouvoir récupérer les données présentes dans la table maison en créant le modèle.
+Nous créons ensuite un contrôleur qui va importer ce modèle et ainsi va nous permettre d’utiliser ces mêmes données mais qui va de plus nous permettre d’afficher la vue correspondante à la liste des maisons. 
+Il ne reste plus qu’à créer la vue affichant la liste, cette vue sera différente selon les données précédemment envoyées en paramètre par le contrôleur
+Pour un type de données un fichier pour le modèle et un fichier contrôleur suffisent. Alors qu’une vue correspond en réalité à une fonctionnalité et pas seulement à une page, sur l’exemple précédent on peut remarquer un bandeau supérieur avec les différentes catégories du site qui représente une vue avec plusieurs redirections. Et la liste des maisons équivaut à une autre vue. 
+
+En organisant de cette manière le site avec les vues, il est alors plus simple de rendre notre site flexible pour pouvoir réutiliser des fonctionnalités sans avoir à les coder une nouvelle fois dans leurs intégralités.
+De la même manière pour gérer les URL du site un seul fichier de routage permet d’organiser toutes les redirections en un seul et même endroit, ainsi, il est plus simple de réutiliser un lien menant vers une page intrinsèque.
+
+#### Listing des technologies et outils utilisés :
+
+PhpStorm - 
+Discord
+
+#### Résumé de ce que ce projet nous a apporté personnellement :
+
+**Lucas Garofalo :** 
+
+**Eliott Tardieu :**
+Avec l'aide de Lucas, ce projet m'a permis de remettre les pieds dans le php, alors que le dernier projet réalisé (avec Lucas également) 
+en développement web remontait à il y a un an. Ainsi, j'ai repris les habitudes du php, du html, du (s)css, et d'un peu de js. 
+C'était bien, malgré les problèmes d'organisation liés aux conditions actuelles. Pour moi ce projet a été très bénéfique, mais je pense 
+qu'il fallait des bases dans le développement web pour pouvoir en profiter au maximum, chose que certains n'ont probablement pas. 
+Dans l'ensemble, j'ai apprécié ce projet.
+
+**Arthur Le Floch :**
+
+**Louis lecoeur :**
+
