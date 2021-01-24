@@ -128,6 +128,74 @@ $usersData = [
         "firstname" => "Postbad",
         "lastname" => "Jean Luc",
         "gender" => "M"
+    ], [
+        "firstname" => "Jair",
+        "lastname" => "Bolsonaro",
+        "gender" => "M"
+    ], [
+        "firstname" => "Newbie",
+        "lastname" => "Des champs de legs",
+        "gender" => "M"
+    ], [
+        "firstname" => "Nadèje",
+        "lastname" => "Guionnière",
+        "gender" => "M"
+    ], [
+        "firstname" => "Mateo",
+        "lastname" => "Guionnière",
+        "gender" => "F"
+    ], [
+        "firstname" => "Aniès",
+        "lastname" => "Guionnière",
+        "gender" => "F"
+    ], [
+        "firstname" => "Ronan",
+        "lastname" => "Guionnière",
+        "gender" => "M"
+    ], [
+        "firstname" => "Phillipe",
+        "lastname" => "Guionnière",
+        "gender" => "M"
+    ], [
+        "firstname" => "Louise",
+        "lastname" => "Gervais",
+        "gender" => "F"
+    ], [
+        "firstname" => "Fiona",
+        "lastname" => "Dorigné",
+        "gender" => "F"
+    ], [
+        "firstname" => "Lucas",
+        "lastname" => "Richer",
+        "gender" => "M"
+    ], [
+        "firstname" => "Maxime",
+        "lastname" => "Blanchet",
+        "gender" => "M"
+    ], [
+        "firstname" => "Clément",
+        "lastname" => "Blanchet",
+        "gender" => "M"
+    ], [
+        "firstname" => "Maxence",
+        "lastname" => "Poil",
+        "gender" => "M"
+    ], [
+        "firstname" => "Olivier",
+        "lastname" => "Legros",
+        "gender" => "M"
+    ], [
+        "firstname" => "Roman",
+        "lastname" => "Stadniki",
+        "gender" => "M"
+    ], [
+        "firstname" => "Bénédicte",
+        "lastname" => "Florain",
+        "gender" => "F"
+    ], [
+        "firstname" => "Alain",
+        "lastname" => "Génain",
+        "gender" => "M"
     ]
 ];
 
