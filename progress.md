@@ -1,4 +1,4 @@
-![90%](https://progress-bar.dev/90)
+![100%](https://progress-bar.dev/100)
 
 ### Fonctionnalités codées:
 
@@ -20,8 +20,10 @@
 - Listing / ajout de substances / resources par type d'appareils (Lucas)
 - Création d'appartement (Louis)
 - Habitants par appartements (Eliott)
+- Statistiques (Mesures...) (Lucas)
 
 ### Fonctionnalités restantes:
 
-- Statistiques (Mesures...)
+Aucune fonctionnalités restantes.
+
 
