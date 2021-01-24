@@ -5,6 +5,7 @@ use GreenHouse\Models\Flat;
 use GreenHouse\Models\Measure;
 use GreenHouse\Models\SQL;
 use GreenHouse\Models\User;
+use GreenHouse\Utils\Dbg;
 
 SQL::db()->query("SET FOREIGN_KEY_CHECKS=0;");
 
@@ -29,7 +30,8 @@ for ($i = 0; $i < $measureCount; $i++) {
 
     foreach (Flat::getAll() as $flat) {
         for ($i = 0; $i < rand(1, 4); $i++) {
-            SQL::insert(User::HOUSES_LINK_TABLE, [
+            Dbg::logs($users[$userIndex]);
+            SQL::insert(Flat::LODGERS_LINK_TABLE, [
                 "user_id" => $users[$userIndex]->id,
                 "flat_id" => $flat->id,
                 "start_date" => $startDate->format("Y-m-d"),

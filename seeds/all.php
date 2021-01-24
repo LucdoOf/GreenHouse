@@ -23,7 +23,7 @@
  * users_houses                         //
  */
 
-include "zones.php";
+//include "zones.php";
 include "users.php";
 include "houses.php";
 include "devices.php";
