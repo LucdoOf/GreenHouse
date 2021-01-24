@@ -276,7 +276,7 @@ créée dans cet exemple sera:
 ## Résumé de ce que ce projet nous a apporté personnellement
 
 **Lucas Garofalo :** 
-Rien, j'avais déjà travaillé sur des projets similaires de mêmes / plus grandes échelles.
+J'avais déjà travaillé sur des projets similaires de mêmes / plus grandes échelles mais en équipes de 2 ou beaucoup plus. Le format 4 personnes m'a permis d'apprendre à mieux travailler en équipe de taille moyenne.
 
 **Eliott Tardieu :**
 Avec l'aide de Lucas, ce projet m'a permis de remettre les pieds dans le php, alors que le dernier projet réalisé (avec Lucas également) 
