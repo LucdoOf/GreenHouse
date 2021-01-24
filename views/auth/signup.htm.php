@@ -3,7 +3,7 @@
         <h2 id="signin">Inscription</h2>
     </div>
     <div id="content">
-        <form method="post" action="<?= route("signup") ?>">
+        <form method="post" action="<?= route("signup.post") ?>">
             <input type="email" name="email" placeholder="this@that.net" />
             <input type="password" name="password" placeholder="Mot de passe" />
             <input type="password" name="password2" placeholder="Confirmez le mot de passe"/>
