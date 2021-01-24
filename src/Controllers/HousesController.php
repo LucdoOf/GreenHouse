@@ -2,11 +2,16 @@
 
 namespace GreenHouse\Controllers;
 
+use DateInterval;
+use DateTime;
 use GreenHouse\Core\Auth;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\City;
 use GreenHouse\Models\House;
 use GreenHouse\Models\Flat;
+use GreenHouse\Models\SQL;
+use GreenHouse\Models\User;
+use GreenHouse\Utils\Dbg;
 
 class HousesController extends FrontController {
 
@@ -35,6 +40,13 @@ class HousesController extends FrontController {
         $house = new House();
         $house->hydrate($_POST);
         $house->save();
+        SQL::db()->query("SET FOREIGN_KEY_CHECKS=0;");
+        SQL::insert(User::HOUSES_LINK_TABLE, [
+            "user_id" => Auth::getInstance()->user->id,
+            "house_id" => $house->id,
+            "start_date" => (new DateTime())->format("Y-m-d"),
+            "end_date" => (new DateTime())->add((new DateInterval("P1Y")))->format("Y-m-d")
+        ]);
         $this->redirect(route('houses'));
     }
 

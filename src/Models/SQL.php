@@ -20,7 +20,7 @@ class SQL
      * Connection à la BDD
      * @return PDO
      */
-    private static function db(){
+    public static function db(){
         if(isset(self::$db)) return self::$db;
         $db = new PDO('mysql:host='.MYSQL_HOST.';port=3306;dbname='.MYSQL_DB.';charset=utf8', MYSQL_USER, MYSQL_PASS);
         if(IS_DEV === true){

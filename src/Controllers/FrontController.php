@@ -110,7 +110,7 @@ class FrontController extends Controller {
     }
 
     public function emptyRoute() {
-        $this->redirect(route("houses"), ["message" => "Test message succès", "type" => "success"]);
+        $this->redirect(route("houses"), ["message" => "Vous avez été redirigé vers la liste de vos maisons", "type" => "success"]);
     }
 
 }
