@@ -165,7 +165,7 @@ contrôleur.
 
 Ici il y a le détail de toutes les tables, et nous sommes fier de notre travail global, voilà pourquoi nous n'avons pas ajouté de photo de quelques tables particulières.
 
-#### Exemple de création de page
+## Exemple de création de page
 
 Pour développer notre site web nous nous sommes tournés vers un site web structuré en MVC (Modèle Vue Contrôleur) afin de faciliter son développement et permettant de créer un site de manière efficace sans avoir à se compliquer la vie pour implémenter des pages.
 
