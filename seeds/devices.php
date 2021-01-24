@@ -53,7 +53,7 @@ foreach (["Réfrigérateur", "Micro-ondes", "Appareil à raclette", "Plaques à 
 
     foreach (HarmfullSubstance::getAll([], null, rand(0, count(HarmfullSubstance::getAll()))) as $substance) {
         SQL::insert(DeviceType::SUBSTANCES_LINK_STORAGE, [
-            "substance_id" => $substance->id,
+            "harmfull_substance_id" => $substance->id,
             "device_type_id" => $deviceType->id,
             "production_rate" => rand(0, 175)
         ]);
