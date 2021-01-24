@@ -8,11 +8,11 @@ class Flat extends Model
     const STORAGE = "flats";
     const LODGER_LINK_TABLE = "flats_lodgers";
     const COLUMNS = [
-        "id" => false,
-        "name" => true,
+        "id" => true,
+        "name" => false,
         "house_id" => false,
         "flat_type_id" => false,
-        "security_level" => true,
+        "security_level" => false,
     ];
 
     public $name;

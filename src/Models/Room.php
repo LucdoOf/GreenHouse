@@ -7,8 +7,8 @@ class Room extends Model
 
     const STORAGE = "rooms";
     const COLUMNS = [
-        "id" => false,
-        "name" => true,
+        "id" => true,
+        "name" => false,
         "flat_id" => false,
         "room_type_id" => false,
     ];
