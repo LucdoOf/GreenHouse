@@ -1,18 +1,18 @@
 <?php
-/** @var Flat[] $flats */
-/** @var Room[] $rooms */
+/** @var RoomType[] $roomTypes */
 /** @var Flat $flat */
 
 use GreenHouse\Models\Flat;
-use GreenHouse\Models\Room;
+use GreenHouse\Models\RoomType;
+
 ?>
 <form method="POST" action="<?= route("flat.add-room.post", [$flat->id]) ?>">
     <div class="field">
-        <div class="label">Pièces</div>
+        <div class="label">Type de pièce</div>
         <select name="room_id" class="value">
             <option disabled>Sélectionner une pièce</option>
-            <?php foreach ($rooms as $room): ?>
-                <option value="<?= $room->id; ?>"><?= $room->name; ?> <?= $room->room_type_id; ?></option>
+            <?php foreach ($roomTypes as $roomType): ?>
+                <option value="<?= $roomType->id; ?>"><?= $roomType->name; ?></option>
             <?php endforeach; ?>
         </select>
     </div>

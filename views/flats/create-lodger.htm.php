@@ -1,7 +1,9 @@
 <?php
-/** @var Flat[] $flats */
 /** @var User[] $users */
 /** @var Flat $flat */
+
+use GreenHouse\Models\Flat;
+use GreenHouse\Models\User;
 ?>
 <form method="POST" action="<?= route("flat.add-lodger.post", [$flat->id]) ?>">
     <div class="field">
