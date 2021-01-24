@@ -114,7 +114,7 @@ $departments = [
 ];
 
 foreach ($departments as $departmentName => $regionName) {
-    $region = Region::select(addslashes($regionName));
+    $region = Region::select(["name" => addslashes($regionName)]);
     if (!$region) {
         $region = new Region();
         $region->name = $regionName;
