@@ -10,6 +10,8 @@
 </head>
 <body>
     <div id="login_bg">
+        <div id="titleImg"></div>
+        <!--<img src="<?= resource("images", "GreenHouse.png") ?>" id="titleImg" alt="title">-->
         <?= $content; ?>
     </div>
 </body>

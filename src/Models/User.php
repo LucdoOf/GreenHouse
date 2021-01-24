@@ -2,9 +2,12 @@
 
 namespace GreenHouse\Models;
 
+use PDO;
+
 class User extends Model {
 
     const STORAGE = "users";
+    const HOUSES_LINK_TABLE = 'users_houses';
     const COLUMNS = [
       "id" => true,
       "password" => false,
@@ -42,6 +45,20 @@ class User extends Model {
      */
     public function getFullName() {
         return $this->firstname . " " . $this->lastname;
+    }
+
+    /**
+     * Retourne la liste des maisons de l'utilisateur
+     *
+     * @return House[]
+     */
+    public function getHouses() {
+        $toReturn = [];
+        $query = SQL::select(self::HOUSES_LINK_TABLE, ["user_id" => $this->id]);
+        while ($result = $query->fetch(PDO::FETCH_ASSOC)) {
+            $toReturn[] = new House($result["house_id"]);
+        }
+        return $toReturn;
     }
 
 }

@@ -2,15 +2,13 @@
 
 namespace GreenHouse\Models;
 
-use Cassandra\Date;
 use DateTime;
 use PDO;
 
-class Flat extends Model
-{
+class Flat extends Model {
 
     const STORAGE = "flats";
-    const LODGER_LINK_TABLE = "flats_lodgers";
+    const LODGERS_LINK_TABLE = "flats_lodgers";
     const COLUMNS = [
         "id" => true,
         "name" => false,
@@ -32,7 +30,7 @@ class Flat extends Model
      */
     public function getLinkedLodgers($at = null) {
         $toReturn = [];
-        $query = SQL::select(self::LODGER_LINK_TABLE, ["flat_id" => $this->id]);
+        $query = SQL::select(self::LODGERS_LINK_TABLE, ["flat_id" => $this->id]);
         while ($result = $query->fetch(PDO::FETCH_ASSOC)) {
             $endDate = DateTime::createFromFormat("Y-m-d", $result["end_date"]);
             $startDate = DateTime::createFromFormat("Y-m-d", $result["start_date"]);

@@ -22,7 +22,7 @@ class FlatsController extends FrontController{
         if ($flat->exist()) {
             $this->render("flats/details", [
                 "flat" => $flat,
-                "lodgers" => SQL::select(Flat::LODGER_LINK_TABLE, ["flat_id" => $id]),
+                "lodgers" => SQL::select(Flat::LODGERS_LINK_TABLE, ["flat_id" => $id]),
                 "rooms" => Room::getAll(["flat_id" => $id]),
                 "houses" => House::getAll(),
                 "flat_types" => FlatType::getAll()
@@ -72,13 +72,13 @@ class FlatsController extends FrontController{
     public function addLodgerPost($id){
         if(Request::valueRequest("user_id") && Request::valueRequest("sdate")) {
             if(Request::valueRequest("numb") && Request::valueRequest("edate")) {
-                SQL::insert(Flat::LODGER_LINK_TABLE, ["user_id" => Request::valueRequest("user_id"), "flat_id" => $id, "start_date" => Request::valueRequest("sdate"), "end_date" => Request::valueRequest("edate"), "inhabitants_number" => Request::valueRequest("numb")]);
+                SQL::insert(Flat::LODGERS_LINK_TABLE, ["user_id" => Request::valueRequest("user_id"), "flat_id" => $id, "start_date" => Request::valueRequest("sdate"), "end_date" => Request::valueRequest("edate"), "inhabitants_number" => Request::valueRequest("numb")]);
             } else if(Request::valueRequest("numb")) {
-                SQL::insert(Flat::LODGER_LINK_TABLE, ["user_id" => Request::valueRequest("user_id"), "flat_id" => $id, "start_date" => Request::valueRequest("sdate"), "inhabitants_number" => Request::valueRequest("numb")]);
+                SQL::insert(Flat::LODGERS_LINK_TABLE, ["user_id" => Request::valueRequest("user_id"), "flat_id" => $id, "start_date" => Request::valueRequest("sdate"), "inhabitants_number" => Request::valueRequest("numb")]);
             } else if(Request::valueRequest("edate")){
-                SQL::insert(Flat::LODGER_LINK_TABLE, ["user_id" => Request::valueRequest("user_id"), "flat_id" => $id, "start_date" => Request::valueRequest("sdate"), "end_date" => Request::valueRequest("edate")]);
+                SQL::insert(Flat::LODGERS_LINK_TABLE, ["user_id" => Request::valueRequest("user_id"), "flat_id" => $id, "start_date" => Request::valueRequest("sdate"), "end_date" => Request::valueRequest("edate")]);
             } else {
-                SQL::insert(Flat::LODGER_LINK_TABLE, ["user_id" => Request::valueRequest("user_id"), "flat_id" => $id, "start_date" => Request::valueRequest("sdate")]);
+                SQL::insert(Flat::LODGERS_LINK_TABLE, ["user_id" => Request::valueRequest("user_id"), "flat_id" => $id, "start_date" => Request::valueRequest("sdate")]);
             }
         }
         $this->redirect(route('flat', [$id]));

@@ -1,12 +1,8 @@
-<h1 id="title">Green House</h1>
 <div id="login">
     <div id="head">
         <h2 id="signin">Inscription</h2>
     </div>
     <div id="content">
-        <!--<?php if($signupError):?>
-            <a id="loginError"><?=$signupError?></a>
-        <?php endif;?>-->
         <form method="post" action="<?= route("signup") ?>">
             <input type="email" name="email" placeholder="this@that.net" />
             <input type="password" name="password" placeholder="Mot de passe" />

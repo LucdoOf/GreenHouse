@@ -6,12 +6,14 @@ namespace GreenHouse\Controllers;
 
 use GreenHouse\Core\Auth;
 use GreenHouse\Core\Request;
+use GreenHouse\Utils\Dbg;
 
 class FrontController extends Controller {
 
     protected $layout = 'master';
     protected $async = false;
     const REQUIRE_AUTH = true;
+    const SESSION_ALERT = 'alert';
 
     public function __construct() {
         parent::__construct();
@@ -35,10 +37,21 @@ class FrontController extends Controller {
             echo $content;
             exit();
         }
+        if (isset($_SESSION[self::SESSION_ALERT])) {
+            $vars["alert"] = $_SESSION[self::SESSION_ALERT];
+            unset($_SESSION[self::SESSION_ALERT]);
+        }
         extract($vars);
         require(APPLICATION_PATH . '/views/layouts/' . $this->layout . '.htm.php');
     }
 
+    /**
+     * Récupère le contenu html d'une vue
+     *
+     * @param $view
+     * @param array $vars
+     * @return false|string
+     */
     protected function getContent($view, $vars = []) {
         ob_start();
         extract($vars);
@@ -47,10 +60,14 @@ class FrontController extends Controller {
     }
 
     /**
+     * Redirige l'utilisateur
+     *
      * @param string $url
+     * @param array $alert Message à transmettre via la session, format: ["type" => "success|error|unset", "message" => str]
      * @param int $status HTTP code
      */
-    public function redirect($url, $status = 302) {
+    public function redirect(string $url, $alert = [], $status = 302) {
+        $_SESSION[self::SESSION_ALERT] = $alert;
         header('Location: ' . $url, true, $status);
         session_write_close();
         exit();
@@ -79,7 +96,7 @@ class FrontController extends Controller {
         if ($this->async) {
             jsonError("Unauthorized error 401", 401);
         } else {
-            $this->render('generic.403');
+            $this->render('generic.401');
         }
     }
 
@@ -93,7 +110,7 @@ class FrontController extends Controller {
     }
 
     public function emptyRoute() {
-        $this->redirect(route("houses"));
+        $this->redirect(route("houses"), ["message" => "Test message succès", "type" => "success"]);
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace GreenHouse\Controllers;
 
+use GreenHouse\Core\Auth;
 use GreenHouse\Core\Request;
 use GreenHouse\Models\City;
 use GreenHouse\Models\House;
@@ -10,11 +11,20 @@ use GreenHouse\Models\Flat;
 class HousesController extends FrontController {
 
     public function listHouses() {
-        $this->render("houses/list", ["houses" => House::getAll()]);
+        $this->render("houses/list", ["houses" => Auth::getInstance()->user->getHouses()]);
     }
 
     public function houseDetails($id){
-        $this->render("houses/details", ["house" => new House($id), "cities" => City::getAll(), "flats" => Flat::getAll(["house_id" => $id])]);
+        $house = new House($id);
+        if ($house->exist()) {
+            if ($house->belongsTo(Auth::getInstance()->user)) {
+                $this->render("houses/details", [
+                    "house" => $house,
+                    "cities" => City::getAll(),
+                    "flats" => Flat::getAll(["house_id" => $id])
+                ]);
+            } else $this->error_401();
+        } else $this->error_404();
     }
 
     public function createPage(){
@@ -23,34 +33,30 @@ class HousesController extends FrontController {
 
     public function createHouse(){
         $house = new House();
-        $house->name = Request::valueRequest("name");
-        $house->zipcode = Request::valueRequest("zipcode");
-        $house->number = Request::valueRequest("number");
-        $house->isolation_degree = Request::valueRequest("isolation_degree");
-        $house->eco_level = Request::valueRequest("eco_level");
-        $house->street = Request::valueRequest("street");
-        $house->city_id = Request::valueRequest("city_id");
+        $house->hydrate($_POST);
         $house->save();
         $this->redirect(route('houses'));
     }
 
     public function editHouse($id){
         $house = new House($id);
-        $house->name = Request::valueRequest("name");
-        $house->zipcode = Request::valueRequest("zipcode");
-        $house->number = Request::valueRequest("number");
-        $house->isolation_degree = Request::valueRequest("isolation_degree");
-        $house->eco_level = Request::valueRequest("eco_level");
-        $house->street = Request::valueRequest("street");
-        $house->city_id = Request::valueRequest("city_id");
-        $house->save();
-        $this->redirect(route('houses'));
+        if ($house->exist()) {
+            if ($house->belongsTo(Auth::getInstance()->user)) {
+                $house->hydrate($_POST);
+                $house->save();
+                $this->redirect(route('houses'));
+            } else $this->error_401();
+        } else $this->error_404();
     }
 
     public function deleteHouse($id) {
         $house = new House($id);
-        $house->delete();
-        $this->redirect(route('houses'));
+        if ($house->exist()) {
+            if ($house->belongsTo(Auth::getInstance()->user)) {
+                $house->delete();
+                $this->redirect(route('houses'));
+            } else $this->error_401();
+        } else $this->error_404();
     }
 
 }

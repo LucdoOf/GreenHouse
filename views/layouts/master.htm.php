@@ -39,7 +39,14 @@ use GreenHouse\Core\Auth;
     <div id="app">
         <?= $content; ?>
     </div>
+    <div id="notification-container"></div>
     <script src="<?= resource("scripts", "common.js") ?>"></script>
     <script src="<?= resource("scripts/classes", "Modal.js") ?>"></script>
+    <script src="<?= resource("scripts/classes", "Ui.js") ?>"></script>
+    <?php if(isset($alert) && isset($alert["message"]) && isset($alert["type"])): ?>
+        <script type="text/javascript">
+            Ui.notify("<?= addslashes($alert["message"]) ?>", "<?= $alert["type"] ?>");
+        </script>
+    <?php endif; ?>
 </body>
 </html>

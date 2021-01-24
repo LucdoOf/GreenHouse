@@ -88,7 +88,7 @@ abstract class Model {
      * Hydrate l'objet en fonction d'une array associative
      * @param $data []
      */
-	private function hydrate($data){
+	public function hydrate($data){
 		if($data != false){
 	  		foreach ($data as $key => $value){
                 $this->$key = $value;

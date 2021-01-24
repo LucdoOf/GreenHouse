@@ -2,9 +2,9 @@
 
 namespace GreenHouse\Controllers;
 
-class Controller {
+use GreenHouse\Models\User;
 
-    protected $user = null;
+class Controller {
 
     public function __construct() {}
 
