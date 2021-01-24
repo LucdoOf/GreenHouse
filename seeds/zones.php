@@ -114,15 +114,16 @@ $departments = [
 ];
 
 foreach ($departments as $departmentName => $regionName) {
-    $regions = Region::search(addslashes($regionName));
-    if (!empty($regions)) {
-        $department = new Department();
-        $department->region_id = $regions[0]->id;
-        $department->name = addslashes($departmentName);
-        $department->save();
-    } else {
-        Dbg::warning("Unknown region: " . $regionName);
+    $region = Region::select(addslashes($regionName));
+    if (!$region) {
+        $region = new Region();
+        $region->name = $regionName;
+        $region->save();
     }
+    $department = new Department();
+    $department->region_id = $region->id;
+    $department->name = addslashes($departmentName);
+    $department->save();
 }
 
 $city = new City();
