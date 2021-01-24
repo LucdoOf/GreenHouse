@@ -17,7 +17,7 @@ class AuthController extends FrontController {
      */
     public function login() {
         if (Auth::getInstance()->isAuth()){
-            $this->redirect(route("houses"));
+            $this->redirect(route("houses"), ["message" => "Connexion effectuée", "type" => "success"]);
         } else {
             $this->render("auth.login", [
                 "loginError" => Request::valueRequest("loginError"),
@@ -36,18 +36,18 @@ class AuthController extends FrontController {
         if($password != null && $email != null){
             if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 if(Auth::getInstance()->login($email, $password)) {
-                    $this->redirect(Request::valueRequest("redirect") ?? route("houses"));
+                    $this->redirect(Request::valueRequest("redirect") ?? route("houses"), ["message" => "Connexion effectuée", "type" => "success"]);
                 } else $error = "Utilisateur inconnu ou mot de passe invalide";
             } else $error = "Email invalide";
         }
         $redirectArray = ["loginError" => $error];
         if(!is_null(Request::valueRequest("redirect"))) $redirectArray["redirect"] = Request::valueRequest("redirect");
-        $this->redirect(route("login", $redirectArray));
+        $this->redirect(route("login", $redirectArray), ["message" => "Veuillez réessayer", "type" => "error"]);
     }
 
     public function logout() {
         Auth::getInstance()->logout();
-        $this->redirect(route("login"));
+        $this->redirect(route("login"), ["message" => "Déconnexion effectuée", "type" => "success"]);
     }
 
     public function signup(){
@@ -59,7 +59,8 @@ class AuthController extends FrontController {
             $user = new User();
             if(Request::valueRequest("password")) {
                 $user->password = Request::valueRequest("password");
-                if(Request::valueRequest("email")) {
+                $mails = User::getAll(["email" => Request::valueRequest("email")]);
+                if(Request::valueRequest("email") && empty($mails)) {
                     $user->email = Request::valueRequest("email");
                     $user->active = 1;
                     $user->role = "user";
@@ -67,18 +68,15 @@ class AuthController extends FrontController {
                     $user->lastname = Request::valueRequest("lastname");
                     $user->gender = Request::valueRequest("gender");
                     $user->save();
-                    $this->redirect(route('login'));
+                    $this->redirect(route('login'), ["message" => "Inscription effectuée", "type" => "success"]);
                 } else {
-                    Dbg::error("name err");
-                    $this->redirect(route('signup'));
+                    $this->redirect(route('signup'), ["message" => "Email invalide", "type" => "error"]);
                 }
             } else {
-                Dbg::error("pass empty");
-                $this->redirect(route('signup'));
+                $this->redirect(route('signup'), ["message" => "Mot de passe invalide", "type" => "error"]);
             }
         } else {
-            Dbg::error("pass err");
-            $this->redirect(route('signup'));
+            $this->redirect(route('signup'), ["message" => "Les mots de passe ne correspondent pas", "type" => "error"]);
         }
     }
 

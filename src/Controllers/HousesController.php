@@ -47,7 +47,7 @@ class HousesController extends FrontController {
             "start_date" => (new DateTime())->format("Y-m-d"),
             "end_date" => (new DateTime())->add((new DateInterval("P1Y")))->format("Y-m-d")
         ]);
-        $this->redirect(route('houses'));
+        $this->redirect(route('houses'), ["message" => "Ajout effectué", "type" => "success"]);
     }
 
     public function editHouse($id){
@@ -56,7 +56,7 @@ class HousesController extends FrontController {
             if ($house->belongsTo(Auth::getInstance()->user)) {
                 $house->hydrate($_POST);
                 $house->save();
-                $this->redirect(route('houses'));
+                $this->redirect(route('houses'), ["message" => "Modification effectuée", "type" => "success"]);
             } else $this->error_401();
         } else $this->error_404();
     }
@@ -66,7 +66,7 @@ class HousesController extends FrontController {
         if ($house->exist()) {
             if ($house->belongsTo(Auth::getInstance()->user)) {
                 $house->delete();
-                $this->redirect(route('houses'));
+                $this->redirect(route('houses'), ["message" => "Suppression effectuée", "type" => "success"]);
             } else $this->error_401();
         } else $this->error_404();
     }
