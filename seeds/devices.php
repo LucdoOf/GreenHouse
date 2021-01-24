@@ -24,6 +24,7 @@ foreach (["Eau", "Électricité", "Gaz"] as $resourceName) {
     $resource->max_value = 100*24*30;
     $resource->critical_value = 150*24*30;
     $resource->ideal_value = 50*24*30;
+    $resource->save();
 }
 
 foreach (["Plutonium", "CO2", "Méthane"] as $substanceName) {
@@ -34,6 +35,7 @@ foreach (["Plutonium", "CO2", "Méthane"] as $substanceName) {
     $substance->max_value = 100*24*30;
     $substance->critical_value = 150*24*30;
     $substance->ideal_value = 50*24*30;
+    $substance->save();
 }
 
 foreach (["Réfrigérateur", "Micro-ondes", "Appareil à raclette", "Plaques à induction", "Four", "Lave vaisselle"] as $deviceTypeName) {
