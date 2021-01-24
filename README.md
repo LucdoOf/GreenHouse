@@ -6,11 +6,20 @@ GreenHouse est un projet encadré de Polytech Tours permettant la gestion de mai
 
 Garofalo Lucas - Tardieu Eliott - Le Floch Arthur - Lecoeur Louis
 
+## Version "staging"
+
+Pour donner un exemple d'utilisation *correcte* du site, nous avons mis à votre disposition une version en ligne du
+projet hébergée par nos soins, évitez de toucher aux données de cette version, elle n'est là qu'a titre de démonstration.
+Vous pouvez y accéder sur l'URL: https://greenhouse.agile-web.dev. 
+
+> Pour vous connecter, utilisez les identifiants *lucas.garofalo@agile-web.dev* / *letmein*
 
 ## Installation du projet
 
 1) À la demande du corps enseignant, **le projet n'utilise aucune librairie**. Nous avons recréé entièrement certaines 
-librairies afin de nous prêter à l'exercice. Ainsi, nous n'utiliserons pas composer.
+librairies afin de nous prêter à l'exercice. Ainsi, nous n'utiliserons pas composer et les seules technologies utilisées 
+sont PHP, SCSS et CSS ainsi que Javascript. Nous avons utilisé des outils de versionnage tels que Git pour nous permettre
+d'organiser le travail ainsi que la mise en production du site.
 
 2) Afin de garantir une phase de développement simple et un déploiement propre,
 nous utilisons des fichiers de configurations, pour créer le vôtre, copier le fichier d'exemple `conf.inc.example.php` 
@@ -20,7 +29,7 @@ vers le fichier `conf.inc.php`. Il vous faudra renseigner vos identifiants SQL, 
 
 3) Pour finir, si vous êtes sur un environnement linux, il est **nécessaire** de donner les droits à votre utilisateur Apache (généralement www-data) sur le dossier `data`. 
 
-> Il est important de donner les droits **récursivement** sur le dossier data. Exemple: `sudo chown www-data:lucas data/ -R`. N.B.: Si après le premier affichage du site non fructueux, le fichier 'mois/jour.txt' n'est pas créé, exécuter à nouveau la commande.
+> Il est important de donner les droits **récursivement** sur le dossier data. Exemple: `sudo chown www-data:lucas data/ -R`. N.B.: Si après le premier affichage du site non fructueux, le fichier 'mois/jour.log' n'est pas créé, exécuter à nouveau la commande.
 
 ## Utilisation et développement
 
@@ -32,7 +41,7 @@ comme SGBD avec PhpMyAdmin.
 1) Nous utilisons Font Awesome (https://fontawesome.com/start) pour intégrer des icônes. Pour insérer une icône, 
 il suffit d'écrire un tag `<i>` avec la classe correspondant à l'icône voulue (trouvée sur le site de Font Awesome)
 
-> Exemple <i class="fas fa-vials"></i>` correspond à une éprouvette
+> Exemple \<i class="fas fa-vials">\</i>` correspond à une éprouvette
 
 2) Les fichiers de style inclus dans le projet sont générés par minification et compilation de fichier SCSS. 
 Par soucis de temps, nous nous contenterons d'une architecture SCSS simples en n'utilisant que très peu de fonctionnalités
@@ -170,22 +179,104 @@ Exemple d’une page affichant la liste des maisons sur le site :
 
 ![Image page web](https://imgur.com/yaMsy5h.png)
 
-Pour pouvoir intégrer cette liste dans notre site il nous faut donc 3 fichiers différents pour correspondre avec l’architecture MVC. Tout d’abord nous voulons pouvoir récupérer les données présentes dans la table maison en créant le modèle.
+Pour pouvoir intégrer cette liste dans notre site il nous faut donc 3 fichiers différents pour correspondre avec l’architecture MVC. Tout d’abord nous voulons pouvoir récupérer les données présentes dans la table maison en créant le modèle:
+
+```php
+class House extends Model {
+
+    const STORAGE = "houses";
+    const COLUMNS = [
+        "id" => true,
+        "zipcode" => false,
+        "number" => false,
+        "isolation_degree" => false,
+        "name" => false,
+        "eco_level" => false,
+        "street" => false,
+        "city_id" => false
+    ];
+
+    public $zipcode;
+    public $number;
+    public $isolation_degree;
+    public $name;
+    public $eco_level;
+    public $street;
+    public $city_id;
+
+}
+```
+
+Nous renseignons les colonnes, si elles ont des valeurs par défaut ainsi que le nom de la table. (Pour plus d'informations, voir [Modèles](#Modèles).
+
 Nous créons ensuite un contrôleur qui va importer ce modèle et ainsi va nous permettre d’utiliser ces mêmes données mais qui va de plus nous permettre d’afficher la vue correspondante à la liste des maisons. 
+
+```php
+class HousesController extends FrontController {
+
+    public function listHouses() {
+        $this->render("houses/list", ["houses" => Auth::getInstance()->user->getHouses()]);
+    }
+
+}
+```
+
+La fonction `listHouses` correspondra ici à la méthode appelée lorsqu'on souhaite afficher la liste des maisons, la méthode
+`render` permet de rendre une vue avec les paramètres donnés.
+
 Il ne reste plus qu’à créer la vue affichant la liste, cette vue sera différente selon les données précédemment envoyées en paramètre par le contrôleur
-Pour un type de données un fichier pour le modèle et un fichier contrôleur suffisent. Alors qu’une vue correspond en réalité à une fonctionnalité et pas seulement à une page, sur l’exemple précédent on peut remarquer un bandeau supérieur avec les différentes catégories du site qui représente une vue avec plusieurs redirections. Et la liste des maisons équivaut à une autre vue. 
+Pour un type de données un fichier pour le modèle et un fichier contrôleur suffisent. Alors qu’une vue correspond en réalité à une fonctionnalité et pas
+seulement à une page, sur l’exemple précédent on peut remarquer un bandeau supérieur avec les différentes catégories du site qui représente une vue avec plusieurs redirections. Et la liste des maisons équivaut à une autre vue. 
+
+```php
+<?php
+/** @var House[] $houses */
+
+use GreenHouse\Models\House;
+?>
+
+<div class="row">
+    <div class="box no-padding col-12">
+        <div class="box-content">
+            <div class="table-wrapper">
+                <table class="table <?= empty($houses) ? 'empty' : '' ?>">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Degré d'isolation</th>
+                        <th>Classement écologique</th>
+                        <th><a class="button" href="<?= route('house.create.page') ?>" ><i class="fas fa-plus r"></i>Ajouter une maison</a></th>
+                    </tr>
+                    <?php foreach ($houses as $house): ?>
+                        <tr>
+                            <td><?= $house->id; ?></td>
+                            <td><?= $house->name; ?></td>
+                            <td><?= $house->number;  ?> <?= $house->street;?></td>
+                            <td><?= $house->isolation_degree; ?></td>
+                            <td><?= $house->eco_level; ?></td>
+                            <td><a class="button" href="<?= route('house', [$house->id]) ?>"><i class="far fa-eye r"></i>Détails</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+```
 
 En organisant de cette manière le site avec les vues, il est alors plus simple de rendre notre site flexible pour pouvoir réutiliser des fonctionnalités sans avoir à les coder une nouvelle fois dans leurs intégralités.
-De la même manière pour gérer les URL du site un seul fichier de routage permet d’organiser toutes les redirections en un seul et même endroit, ainsi, il est plus simple de réutiliser un lien menant vers une page intrinsèque.
+De la même manière pour gérer les URL du site un seul fichier de routage permet d’organiser toutes les redirections en un seul et même endroit, ainsi, il est plus simple de réutiliser un lien menant vers une page intrinsèque, la route
+créée dans cet exemple sera:
 
-#### Listing des technologies et outils utilisés :
-
-PhpStorm - 
-Discord
+```php
+'houses' => ["GET", "/houses", [HousesController::class, "listHouses"]]
+```
 
 #### Résumé de ce que ce projet nous a apporté personnellement :
 
 **Lucas Garofalo :** 
+Rien, j'avais déjà travaillé sur des projets similaires de mêmes / plus grandes échelles.
 
 **Eliott Tardieu :**
 Avec l'aide de Lucas, ce projet m'a permis de remettre les pieds dans le php, alors que le dernier projet réalisé (avec Lucas également) 
@@ -195,6 +286,7 @@ qu'il fallait des bases dans le développement web pour pouvoir en profiter au m
 Dans l'ensemble, j'ai apprécié ce projet.
 
 **Arthur Le Floch :**
+Le projet est correct il y a pas mal de liberté pour pouvoir l’exécuter, mais il manque quand même cruellement d'une ligne directrice sur les attentes du site.
 
 **Louis lecoeur :**
 

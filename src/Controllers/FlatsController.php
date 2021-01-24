@@ -70,7 +70,7 @@ class FlatsController extends FrontController{
             $this->redirect(route('flats'), ["message" => "Appartement supprimé", "type" => "success"]);
         } else $this->error_404();
     }
-    
+
     public function addLodger($id){
         $flat = new Flat($id);
         if ($flat->exist()) {
