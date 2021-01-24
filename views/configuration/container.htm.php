@@ -5,7 +5,7 @@ use GreenHouse\Models\Region;
 ?>
 
 <div class="row">
-    <div class="col-6 wr">
+    <div class="col-12 col-md-6 wr">
         <div class="row">
             <?php include "zones/list.htm.php"; ?>
         </div>
@@ -13,7 +13,7 @@ use GreenHouse\Models\Region;
             <?php include "deviceTypes/list.htm.php"; ?>
         </div>
     </div>
-    <div class="col-6 wr">
+    <div class="col-12 col-md-6 wr">
         <div class="row">
             <?php include "resources/list.htm.php"; ?>
         </div>

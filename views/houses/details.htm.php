@@ -4,7 +4,7 @@
 /** @var Flat[] $flats */
 ?>
 <div class="row">
-    <div class="box col-6">
+    <div class="box col-12 col-md-6">
         <div class="box-header">
             <span class="box-title"><?= $house->name; ?></span>
         </div>
@@ -57,7 +57,7 @@
             </div>
         </form>
     </div>
-    <div class="box col-6">
+    <div class="box col-12 col-md-6">
         <div class="box-header">
             <span class="box-title">Liste des appartements</span>
         </div>

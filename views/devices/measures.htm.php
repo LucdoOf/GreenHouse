@@ -4,7 +4,7 @@
 use GreenHouse\Models\Device;
 ?>
 
-<div class="box col-6 no-padding">
+<div class="box col-12 col-md-6 no-padding">
     <div class="box-header">
         <span class="box-title">Mesures</span>
         <div class="box-actions">
