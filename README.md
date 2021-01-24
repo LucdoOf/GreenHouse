@@ -289,4 +289,5 @@ Dans l'ensemble, j'ai apprécié ce projet.
 Le projet est correct il y a pas mal de liberté pour pouvoir l’exécuter, mais il manque quand même cruellement d'une ligne directrice sur les attentes du site.
 
 **Louis lecoeur :**
+Bon ressenti global, avec l'aide de Lucas nous avons pu apprendre une architecture et des technologies interessantes dans un cadre presque profesionnel. 
 
