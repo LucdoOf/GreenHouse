@@ -273,7 +273,7 @@ créée dans cet exemple sera:
 'houses' => ["GET", "/houses", [HousesController::class, "listHouses"]]
 ```
 
-#### Résumé de ce que ce projet nous a apporté personnellement :
+## Résumé de ce que ce projet nous a apporté personnellement :
 
 **Lucas Garofalo :** 
 Rien, j'avais déjà travaillé sur des projets similaires de mêmes / plus grandes échelles.
