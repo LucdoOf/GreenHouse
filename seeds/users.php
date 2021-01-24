@@ -84,6 +84,50 @@ $usersData = [
         "firstname" => "Annick",
         "lastname" => "GoesBrrrr",
         "gender" => "?"
+    ], [
+        "firstname" => "Tania",
+        "lastname" => "Tardieu",
+        "gender" => "F"
+    ], [
+        "firstname" => "Octave",
+        "lastname" => "Tardieu",
+        "gender" => "M"
+    ], [
+        "firstname" => "Lewis",
+        "lastname" => "Tardieu",
+        "gender" => "M"
+    ], [
+        "firstname" => "Gros Joe",
+        "lastname" => "Garofalo",
+        "gender" => "M"
+    ], [
+        "firstname" => "Illusion",
+        "lastname" => "Garofalo",
+        "gender" => "F"
+    ], [
+        "firstname" => "Joseph",
+        "lastname" => "Garofalo",
+        "gender" => "M"
+    ], [
+        "firstname" => "Arthurette",
+        "lastname" => "Le Floch",
+        "gender" => "F"
+    ], [
+        "firstname" => "Capitaine",
+        "lastname" => "Crochet",
+        "gender" => "M"
+    ], [
+        "firstname" => "François",
+        "lastname" => "Hollande",
+        "gender" => "M"
+    ], [
+        "firstname" => "Phillipe",
+        "lastname" => "Je sais ou tu te caches",
+        "gender" => "M"
+    ], [
+        "firstname" => "Postbad",
+        "lastname" => "Jean Luc",
+        "gender" => "M"
     ]
 ];
 
