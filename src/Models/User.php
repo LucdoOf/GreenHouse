@@ -16,7 +16,8 @@ class User extends Model {
       "firstname" => false,
       "lastname" => false,
       "gender" => false,
-      "role" => false
+      "role" => false,
+      "creation_date" => false
     ];
 
     public $password;
@@ -26,6 +27,7 @@ class User extends Model {
     public $lastname;
     public $gender;
     public $role;
+    public $creation_date;
 
     /**
      * Vérifie si le mot de passe est correct.

@@ -352,6 +352,7 @@ foreach ($usersData as $userData) {
     $user->active = 1;
     $user->role = "admin";
     $user->password = password_hash("letmein", PASSWORD_DEFAULT);
+    $user->creation_date = (new DateTime())->format("Y-m-d");
     $user->save();
 }
 

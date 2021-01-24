@@ -91,6 +91,7 @@ class Router {
                 $method = $handler["method"];
 
                 if (method_exists($controller, $method)) {
+                    Dbg::success("Found route " . $method . ":" . $controller);
                     call_user_func_array([new $controller, $method], $vars);
                 } else {
                     Dbg::error("Method $method not found");

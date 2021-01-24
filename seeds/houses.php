@@ -90,10 +90,10 @@ $flat->save();
 
 foreach (Flat::getAll() as $flat) {
     foreach (RoomType::getAll([], null, rand(0, count(RoomType::getAll()))) as $roomType) {
-        $flat = new Room();
-        $flat->name = $roomType->name;
-        $flat->room_type_id = $roomType->id;
-        $flat->flat_id = $flat->id;
-        $flat->save();
+        $room = new Room();
+        $room->name = $roomType->name;
+        $room->room_type_id = $roomType->id;
+        $room->flat_id = $flat->id;
+        $room->save();
     }
 }
