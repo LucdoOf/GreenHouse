@@ -10,7 +10,7 @@ use GreenHouse\Utils\Dbg;
 SQL::db()->query("SET FOREIGN_KEY_CHECKS=0;");
 
 SQL::truncate(Measure::STORAGE);
-SQL::truncate(User::HOUSES_LINK_TABLE);
+SQL::truncate(Flat::LODGERS_LINK_TABLE);
 
 $measureCount = 8;
 $startDate = new DateTime();

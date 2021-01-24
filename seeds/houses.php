@@ -61,6 +61,7 @@ foreach (["102b", "305a", "206b"] as $key => $number) {
     $flat->house_id = $house1->id;
     $flat->flat_type_id = FlatType::getAll()[$key]->id;
     $flat->security_level = 4;
+    $flat->save();
 }
 
 $house2 = new House();

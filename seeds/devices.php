@@ -24,16 +24,18 @@ foreach (["Eau", "Électricité", "Gaz"] as $resourceName) {
     $resource->max_value = 100*24*30;
     $resource->critical_value = 150*24*30;
     $resource->ideal_value = 50*24*30;
+    $resource->save();
 }
 
 foreach (["Plutonium", "CO2", "Méthane"] as $substanceName) {
     $substance = new HarmfullSubstance();
     $substance->name = $substanceName;
-    $substance->description = "Le" . $substanceName . ", c'est mal";
+    $substance->description = addslashes("Le" . $substanceName . ", c'est mal");
     $substance->min_value = 0;
     $substance->max_value = 100*24*30;
     $substance->critical_value = 150*24*30;
     $substance->ideal_value = 50*24*30;
+    $substance->save();
 }
 
 foreach (["Réfrigérateur", "Micro-ondes", "Appareil à raclette", "Plaques à induction", "Four", "Lave vaisselle"] as $deviceTypeName) {
@@ -51,7 +53,7 @@ foreach (["Réfrigérateur", "Micro-ondes", "Appareil à raclette", "Plaques à 
 
     foreach (HarmfullSubstance::getAll([], null, rand(0, count(HarmfullSubstance::getAll()))) as $substance) {
         SQL::insert(DeviceType::SUBSTANCES_LINK_STORAGE, [
-            "substance_id" => $substance->id,
+            "harmfull_substance_id" => $substance->id,
             "device_type_id" => $deviceType->id,
             "production_rate" => rand(0, 175)
         ]);
