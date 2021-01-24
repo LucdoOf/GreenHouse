@@ -43,7 +43,7 @@ use GreenHouse\Models\User;
             </div>
             <div class="box-footer">
                 <div class="button-group">
-                    <a href="<?= route('flat.create.page') ?>" class="button">Annuler</a>
+                    <a href="<?= route('flats') ?>" class="button">Annuler</a>
                     <button type="submit" class="button cta">Enregistrer</button>
                 </div>
             </div>
