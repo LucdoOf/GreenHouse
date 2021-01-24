@@ -92,4 +92,8 @@ class FrontController extends Controller {
         }
     }
 
+    public function emptyRoute() {
+        $this->redirect(route("houses"));
+    }
+
 }

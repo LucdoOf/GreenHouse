@@ -4,7 +4,7 @@
 use GreenHouse\Models\Region;
 ?>
 
-<div class="box col-6">
+<div class="box col-12">
     <div class="box-header">
         <div class="box-title">Régions</div>
         <div class="box-actions">

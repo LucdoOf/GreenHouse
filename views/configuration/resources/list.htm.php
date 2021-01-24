@@ -4,7 +4,7 @@
 use GreenHouse\Models\Resource;
 ?>
 
-<div class="box col-6 no-padding">
+<div class="box col-12 no-padding">
     <div class="box-header">
         <div class="box-title">Resources</div>
         <div class="box-actions">

@@ -4,7 +4,7 @@
 use GreenHouse\Models\FlatType;
 ?>
 
-<div class="box col-6">
+<div class="box col-12">
     <div class="box-header">
         <div class="box-title">Types D'appartements</div>
         <div class="box-actions">

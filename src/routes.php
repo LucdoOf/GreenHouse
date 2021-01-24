@@ -1,32 +1,35 @@
 <?php
 
 use GreenHouse\Controllers\ConfigurationController;
+use GreenHouse\Controllers\Controller;
 use GreenHouse\Controllers\DevicesController;
+use GreenHouse\Controllers\FrontController;
 use GreenHouse\Controllers\HousesController;
 use GreenHouse\Controllers\FlatsController;
 use GreenHouse\Controllers\AuthController;
 use GreenHouse\Controllers\RoomsController;
 
 return [
+    ''                                                  => ["GET", "", [FrontController::class, "emptyRoute"]],
     'login'                                             => ["GET", "/login", [AuthController::class, "login"]],
     'signup'                                            => ["GET", "/signup", [AuthController::class, "signup"]],
     'signup.post'                                       => ["POST", "/signup/post", [AuthController::class, "signupPost"]],
-    'houses'                                            => ["GET", "", [HousesController::class, "listHouses"]],
+    'houses'                                            => ["GET", "/houses", [HousesController::class, "listHouses"]],
     'house.create'                                      => ["POST", "/house/create/post", [HousesController::class, "createHouse"]],
     'house.create.page'                                 => ["GET", "/house/create", [HousesController::class, "createPage"]],
     'house.delete'                                      => ["GET", "/houses/delete/(.+)", [HousesController::class, "deleteHouse"]],
     'house.edit'                                        => ["POST", "/houses/edit/(.+)", [HousesController::class, "editHouse"]],
     'house'                                             => ["GET", "/houses/(.+)", [HousesController::class, "houseDetails"]],
     'flats'                                             => ["GET", "/flats", [FlatsController::class, "listFlats"]],
-    'flat.create'                                       => ["POST", "/flat/create/post", [FlatsController::class, "createFlat"]],
-    'flat.create.page'                                  => ["GET", "/flat/create", [FlatsController::class, "createPage"]],
-    'flat.add-lodger.post'                              => ["POST", "/flat/(.+)/add-lodger/post", [FlatsController::class, "addLodgerPost"]],
-    'flat.add-lodger'                                   => ["GET", "/flat/(.+)/add-lodger", [FlatsController::class, "addLodger"]],
-    'flat.add-room.post'                                => ["POST", "/flat/(.+)/add-room/post", [FlatsController::class, "addRoomPost"]],
-    'flat.add-room'                                     => ["GET", "/flat/(.+)/add-room", [FlatsController::class, "addRoom"]],
+    'flat.create'                                       => ["POST", "/flats/create/post", [FlatsController::class, "createFlat"]],
+    'flat.create.page'                                  => ["GET", "/flats/create", [FlatsController::class, "createPage"]],
+    'flat.add-lodger.post'                              => ["POST", "/flats/(.+)/add-lodger/post", [FlatsController::class, "addLodgerPost"]],
+    'flat.add-lodger'                                   => ["GET", "/flats/(.+)/add-lodger", [FlatsController::class, "addLodger"]],
+    'flat.add-room.post'                                => ["POST", "/flats/(.+)/add-room/post", [FlatsController::class, "addRoomPost"]],
+    'flat.add-room'                                     => ["GET", "/flats/(.+)/add-room", [FlatsController::class, "addRoom"]],
     'flat.delete'                                       => ["GET", "/flats/delete/(.+)", [FlatsController::class, "deleteFlat"]],
-    'flat.edit'                                         => ["POST", "/flat/edit/(.+)", [FlatsController::class, "editFlat"]],
-    'flat'                                              => ["GET", "/flat/(.+)", [FlatsController::class, "flatDetails"]],
+    'flat.edit'                                         => ["POST", "/flats/edit/(.+)", [FlatsController::class, "editFlat"]],
+    'flat'                                              => ["GET", "/flats/(.+)", [FlatsController::class, "flatDetails"]],
     'room.edit'                                         => ["POST", "/room/edit/(.+)", [RoomsController::class, "editRoom"]],
     'room'                                              => ["GET", "/room/(.+)", [RoomsController::class, "roomDetails"]],
     'auth'                                              => ["POST", "/auth", [AuthController::class, "auth"]],

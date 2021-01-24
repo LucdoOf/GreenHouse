@@ -4,7 +4,7 @@
 use GreenHouse\Models\DeviceType;
 ?>
 
-<div class="box no-padding col-6">
+<div class="box no-padding col-12">
     <div class="box-header">
         <div class="box-title">Types d'appareils</div>
         <div class="box-actions">

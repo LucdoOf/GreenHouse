@@ -3,6 +3,7 @@
 namespace GreenHouse\Models;
 
 use DateTime;
+use Exception;
 use GreenHouse\Utils\Dbg;
 
 class Device extends Model {
@@ -53,8 +54,10 @@ class Device extends Model {
     public function getProductionAt(HarmfullSubstance $substance, DateTime $date) {
         $toReturn = 0;
         foreach ($this->getLinkedMeasures() as $measure) {
-            if ($measure->endDate()->getTimestamp() <= $date->getTimestamp()) {
-                $toReturn += ($this->getType()->getProductionRateFor($substance))*24 * count_days_between($measure->startDate(), $measure->endDate());
+            if ($measure->startDate()->getTimestamp() < $date->getTimestamp() && $measure->endDate()->getTimestamp() >= $date->getTimestamp()) {
+                $toReturn += ($this->getType()->getProductionRateFor($substance)) *
+                    24 * count_days_between($measure->startDate(), $measure->endDate()) *
+                    count($this->getFlat()->getLinkedLodgers($date));
             }
         }
         return $toReturn;
@@ -70,8 +73,10 @@ class Device extends Model {
     public function getConsumptionAt($resource, DateTime $date) {
         $toReturn = 0;
         foreach ($this->getLinkedMeasures() as $measure) {
-            if ($measure->startDate()->getTimestamp() < $date->getTimestamp() && $measure->endDate()->getTimestamp() <= $date->getTimestamp()) {
-                $toReturn += $this->getType()->getConsumptionRateFor($resource) * count_days_between($measure->startDate(), $measure->endDate());
+            if ($measure->startDate()->getTimestamp() < $date->getTimestamp() && $measure->endDate()->getTimestamp() >= $date->getTimestamp()) {
+                $toReturn += $this->getType()->getConsumptionRateFor($resource) *
+                    24 * count_days_between($measure->startDate(), $measure->endDate()) *
+                    count($this->getFlat()->getLinkedLodgers($date));
             }
         }
         return $toReturn;
@@ -94,20 +99,32 @@ class Device extends Model {
             }
             foreach ($this->getType()->getLinkedResources() as $resource) {
                 $data[$resource->name][] = $this->getConsumptionAt($resource, $measure->endDate());
-
             }
         }
 
         $toReturn = ["datasets" => [], "labels" => $labels];
         foreach ($data as $key => $value) {
-            $toReturn["datasets"][] = [
-                "label" => $key,
-                "data" => $value,
-                "backgroundColor" => 'rgba(' . random_int(0,255) . ',' . random_int(0,255) . ',' . random_int(0,255) . ', 0.2)'
-            ];
+            try {
+                $toReturn["datasets"][] = [
+                    "label" => $key,
+                    "data" => $value,
+                    "backgroundColor" => 'rgba(' . random_int(0, 255) . ',' . random_int(0, 255) . ',' . random_int(0, 255) . ', 0.2)'
+                ];
+            } catch (Exception $e) {
+                Dbg::error("An error occurred generating random color: " . $e->getMessage());
+            }
         }
 
         return $toReturn;
+    }
+
+    /**
+     * Retourne l'appartement associé
+     *
+     * @return Flat
+     */
+    public function getFlat() {
+        return new Flat($this->flat_id);
     }
 
 }

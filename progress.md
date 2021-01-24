@@ -1,4 +1,4 @@
-![70%](https://progress-bar.dev/90)
+![90%](https://progress-bar.dev/90)
 
 ### Fonctionnalités codées:
 

@@ -4,7 +4,7 @@
 use GreenHouse\Models\RoomType;
 ?>
 
-<div class="box no-padding col-6">
+<div class="box no-padding col-12">
     <div class="box-header">
         <div class="box-title">Types de pièces</div>
         <div class="box-actions">
