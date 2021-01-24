@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * cities                               //
  * departments                          //
@@ -22,6 +21,8 @@
  * users                                //
  * users_houses                         //
  */
+
+require "../src/boot.php";
 
 //include "zones.php";
 include "users.php";
