@@ -30,7 +30,7 @@ foreach (["Eau", "Électricité", "Gaz"] as $resourceName) {
 foreach (["Plutonium", "CO2", "Méthane"] as $substanceName) {
     $substance = new HarmfullSubstance();
     $substance->name = $substanceName;
-    $substance->description = "Le" . $substanceName . ", c'est mal";
+    $substance->description = addslashes("Le" . $substanceName . ", c'est mal");
     $substance->min_value = 0;
     $substance->max_value = 100*24*30;
     $substance->critical_value = 150*24*30;
