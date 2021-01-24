@@ -1,7 +1,11 @@
 <?php
 /** @var Room[] $rooms */
+/** @var Flat $flat */
 
+use GreenHouse\Models\Flat;
 use GreenHouse\Models\Room;
+use GreenHouse\Models\RoomType;
+
 ?>
 
 <div class="row">
