@@ -42,7 +42,7 @@ class AuthController extends FrontController {
         }
         $redirectArray = ["loginError" => $error];
         if(!is_null(Request::valueRequest("redirect"))) $redirectArray["redirect"] = Request::valueRequest("redirect");
-        $this->redirect(route("login", $redirectArray), ["message" => "Veuillez réessayer", "type" => "error"]);
+        $this->redirect(route("login", $redirectArray), ["message" => "Veuillez remplir tout les champs", "type" => "error"]);
     }
 
     public function logout() {

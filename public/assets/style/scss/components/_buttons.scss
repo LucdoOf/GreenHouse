@@ -4,6 +4,7 @@
   transition: 200ms all ease;
   display: inline-block;
   white-space: nowrap;
+  text-decoration: none !important;
   &:not(.candy) {
     cursor: pointer;
   }

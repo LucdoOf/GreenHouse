@@ -11,8 +11,15 @@
 <body>
     <div id="login_bg">
         <div id="titleImg"></div>
-        <!--<img src="<?= resource("images", "GreenHouse.png") ?>" id="titleImg" alt="title">-->
         <?= $content; ?>
     </div>
+    <div id="notification-container"></div>
+    <script src="<?= resource("scripts", "common.js") ?>"></script>
+    <script src="<?= resource("scripts/classes", "Ui.js") ?>"></script>
+    <?php if(isset($alert) && isset($alert["message"]) && isset($alert["type"])): ?>
+        <script type="text/javascript">
+            Ui.notify("<?= addslashes($alert["message"]) ?>", "<?= $alert["type"] ?>");
+        </script>
+    <?php endif; ?>
 </body>
 </html>
