@@ -2,6 +2,9 @@
 /** @var Flat[] $flats */
 /** @var Room[] $rooms */
 /** @var Flat $flat */
+
+use GreenHouse\Models\Flat;
+use GreenHouse\Models\Room;
 ?>
 <form method="POST" action="<?= route("flat.add-room.post", [$flat->id]) ?>">
     <div class="field">

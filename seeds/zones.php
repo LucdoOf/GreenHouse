@@ -8,6 +8,12 @@ use GreenHouse\Utils\Dbg;
 
 require "../src/boot.php";
 
+SQL::db()->query("SET FOREIGN_KEY_CHECKS=0;");
+
+SQL::truncate(Region::STORAGE);
+SQL::truncate(Department::STORAGE);
+SQL::truncate(City::STORAGE);
+
 $departments = [
     "Ainvence"                  =>  "Auvergne-Rhone-Alpes",
     "Aisne"                     =>  "Hauts-de-France",
@@ -118,6 +124,11 @@ foreach ($departments as $departmentName => $regionName) {
         Dbg::warning("Unknown region: " . $regionName);
     }
 }
+
+$city = new City();
+$city->name = "Tours";
+$city->department_id = Department::select(["name" => "Indre-et-loire"])->id;
+$city->save();
 
 /**$zoneData = json_decode(file_get_contents("zones.json"), true);
 
