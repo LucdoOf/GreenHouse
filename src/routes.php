@@ -4,13 +4,13 @@ use GreenHouse\Controllers\ConfigurationController;
 use GreenHouse\Controllers\DevicesController;
 use GreenHouse\Controllers\HousesController;
 use GreenHouse\Controllers\FlatsController;
-use GreenHouse\Controllers\LoginController;
+use GreenHouse\Controllers\AuthController;
 use GreenHouse\Controllers\RoomsController;
 
 return [
-    'login'                                             => ["GET", "/login", [LoginController::class, "login"]],
-    'signup'                                            => ["GET", "/signup", [LoginController::class, "signup"]],
-    'signup.post'                                       => ["POST", "/signup/post", [LoginController::class, "signupPost"]],
+    'login'                                             => ["GET", "/login", [AuthController::class, "login"]],
+    'signup'                                            => ["GET", "/signup", [AuthController::class, "signup"]],
+    'signup.post'                                       => ["POST", "/signup/post", [AuthController::class, "signupPost"]],
     'houses'                                            => ["GET", "", [HousesController::class, "listHouses"]],
     'house.create'                                      => ["POST", "/house/create/post", [HousesController::class, "createHouse"]],
     'house.create.page'                                 => ["GET", "/house/create", [HousesController::class, "createPage"]],
@@ -25,9 +25,9 @@ return [
     'rooms'                                             => ["GET", "/rooms", [RoomsController::class, "listRooms"]],
     'room.edit'                                         => ["POST", "/room/edit/(.+)", [RoomsController::class, "editRoom"]],
     'room'                                              => ["GET", "/room/(.+)", [RoomsController::class, "roomDetails"]],
-    'auth'                                              => ["POST", "/auth", [LoginController::class, "auth"]],
-    'test'                                              => ["GET", "/test/(.+)/test/(.+)", [LoginController::class, "test"]],
-    'logout'                                            => ["GET", "/logout", [LoginController::class, "logout"]],
+    'auth'                                              => ["POST", "/auth", [AuthController::class, "auth"]],
+    'test'                                              => ["GET", "/test/(.+)/test/(.+)", [AuthController::class, "test"]],
+    'logout'                                            => ["GET", "/logout", [AuthController::class, "logout"]],
     'configuration'                                     => ["GET", "/configuration", [ConfigurationController::class, "configuration"]],
     'configuration.flat-types.create'                   => ["POST", "/configuration/flat-types/create", [ConfigurationController::class, "createFlatType"]],
     'configuration.room-types.create'                   => ["POST", "/configuration/room-types/create", [ConfigurationController::class, "createRoomType"]],

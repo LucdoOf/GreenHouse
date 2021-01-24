@@ -117,10 +117,10 @@ de route correct:
 <?php
 
 use GreenHouse\Controllers\HousesController;
-use GreenHouse\Controllers\LoginController;
+use GreenHouse\Controllers\AuthController;
 
 return [
-    '/'         => ["GET", "/", [LoginController::class, "login"]],
+    '/'         => ["GET", "/", [AuthController::class, "login"]],
     'houses'    => ["GET", "/houses", [HousesController::class, "listHouses"]]
 ];
 ```

@@ -7,7 +7,7 @@ use GreenHouse\Core\Request;
 use GreenHouse\Models\User;
 use GreenHouse\Utils\Dbg;
 
-class LoginController extends FrontController {
+class AuthController extends FrontController {
 
     const REQUIRE_AUTH = false;
     protected $layout = "login";
@@ -19,7 +19,7 @@ class LoginController extends FrontController {
         if (Auth::getInstance()->isAuth()){
             $this->redirect(route("houses"));
         } else {
-            $this->render("login", [
+            $this->render("auth.login", [
                 "loginError" => Request::valueRequest("loginError"),
                 "redirect"   => Request::valueRequest("redirect")
             ]);
@@ -51,7 +51,7 @@ class LoginController extends FrontController {
     }
 
     public function signup(){
-        $this->render("signup");
+        $this->render("auth.signup");
     }
 
     public function signupPost() {
